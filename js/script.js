@@ -15,7 +15,6 @@ class Tarea{
 function modificarTarea(){
 
     let nombreBusqueda = prompt("Ingrese el nombre de la tarea que desea modificar")
-
     let posicion = arrayTareas.findIndex( element => element.nombre == nombreBusqueda );
 
     if( posicion != -1 ){
@@ -46,16 +45,15 @@ function agregarTarea(id){
 function borrarTarea(){
 
     let idBusqueda = prompt("Ingrese el id de la tarea que desea borrar:")
-
     let indice = arrayTareas.findIndex( element => element.id == idBusqueda );
 
     if( indice != -1 ){
 
-        alert("¡Su tarea " + arrayTareas[indice].nombre + " fue borrado con exito!");// Corregir problema 
+        alert("¡Su tarea " + arrayTareas[indice].nombre + " fue borrado con exito!"); 
         arrayTareas.splice((indice), 1);
 
         if( arrayTareas.length != 0 ){
-            alert("A continuacion le mostramos la lista de tareas por pantalla");//modificar esto
+            alert("A continuacion le mostramos la lista de tareas por pantalla");
             arrayTareas.forEach( element => { element.mostrar() } );
         }
         else{
@@ -67,10 +65,6 @@ function borrarTarea(){
         alert("Su id de tarea ingresado no existe :(");
     }
 
-}
-
-function alerta( mensaje ){
-    alert(mensaje);
 }
 
 function condicionalCantidad( funcion1, funcion2 ){
@@ -89,50 +83,21 @@ let salir = false;
 
 do{
 
-    //let opcion = prompt("Hola " + nombre + ",¿Que desea hacer? \n1 - Ver Lista de tareas \n2 - Agregar una tarea \n3 - Modificar una tarea  \n4 - Eliminar una tarea \n5 - Salir");
-
     switch( prompt("Hola " + nombre + ",¿Que desea hacer? \n1 - Ver Lista de tareas \n2 - Agregar una tarea \n3 - Modificar una tarea  \n4 - Eliminar una tarea \n5 - Salir") ){
         case "1" :
-            //if( arrayTareas.length != 0 ){
-            //    arrayTareas.forEach( element => { element.mostrar() } );
-            //}
-            //else{
-            //    alert("No existen tareas para mostrar, debe ingresar una nueva tarea");
-            //}
             condicionalCantidad( () => { arrayTareas.forEach( element => { element.mostrar() } ) } , () => { alert("No existen tareas para mostrar, debe ingresar una nueva tarea")} );
             break;
     
         case "2" :
-
-            //if( arrayTareas.length != 0 ){
-            //    agregarTarea(  arrayTareas[0].id + 1  );
-            //}
-            //else{
-            //    agregarTarea( 1 );
-            //}
             condicionalCantidad( () => { agregarTarea( arrayTareas[0].id + 1 ) } , () => { agregarTarea( 1 ) } );
             break;
         
         case "3" :
-
-            //if( arrayTareas.length != 0 ){
-            //    modificarTarea();
-            //}
-            //else{
-            //    alert("No existen tareas para modificar, debe ingresar una nueva tarea");
-            //}
-            condicionalCantidad( () => { modificarTarea() } , () => { alert("No existen tareas para modificar, debe ingresar una nueva tarea") } );
+            condicionalCantidad( modificarTarea, () => { alert("No existen tareas para modificar, debe ingresar una nueva tarea") } );
             break;
 
         case "4" :
-
-            //if( arrayTareas.length != 0 ){
-            //    borrarTarea();
-            //}
-            //else{
-            //    alert("No existen tareas para borrar, debe ingresar una nueva tarea");
-            //}
-            condicionalCantidad( () => { borrarTarea() } , () => { alert("No existen tareas para borrar, debe ingresar una nueva tarea") } );
+            condicionalCantidad( borrarTarea, () => { alert("No existen tareas para borrar, debe ingresar una nueva tarea") } );
             break;
     
         case "5" :
