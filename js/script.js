@@ -10,17 +10,21 @@ class Tarea{
     mostrar() {
         alert("\n\nEl id de tarea es: " + this.id + "\n\nEl nombre de la tarea es: " + this.nombre + "\n\nTu tarea es: " + this.descripcion + "\n\nSu prioridad es: " + this.prioridad);
     }
+    modificar(nombre, descripcion, prioridad) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+    }
 }
 
 function modificarTarea(){
 
-    let nombreBusqueda = prompt("Ingrese el nombre de la tarea que desea modificar")
+    let nombreBusqueda = prompt("Ingrese el nombre de la tarea que desea modificar"); 
     let posicion = arrayTareas.findIndex( element => element.nombre == nombreBusqueda );
 
     if( posicion != -1 ){
 
-        arrayTareas[posicion].nombre = prompt("Ahora ingrese nuevo nombre de la tarea");
-        arrayTareas[posicion].descripcion = prompt("Ahora ingrese la nueva descripcion");
+        arrayTareas[posicion].modificar( prompt("Ingrese el nuevo nombre de la tarea"), prompt("Ahora ingrese la nueva descripcion"), prompt("Por favor ingrese su prioridad") );
         alert("A continuacion le mostramos la lista de tareas por pantalla");
         arrayTareas.forEach( element => { element.mostrar() } );
 
@@ -33,11 +37,11 @@ function modificarTarea(){
 
 function agregarTarea(id){
 
-    arrayTareas.unshift(new Tarea( // Agregar tarea
+    arrayTareas.unshift(new Tarea( 
         id , // ID de la tarea
         prompt("Por favor ingrese el nombre de la tarea que debe realizar"), // Nombre de la tarea
         prompt("Por favor ingrese la descripción de la tarea que debe realizar"),  // Descripcion de la tarea
-        prompt("Por favor ingrese la prioridad que va a tener su proyecto") // Prioridad de la tarea
+        prompt("Por favor ingrese la prioridad que va a tener su tarea") // Prioridad de la tarea
     ));
 
 }
