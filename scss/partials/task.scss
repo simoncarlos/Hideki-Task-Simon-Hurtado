@@ -1,0 +1,117 @@
+.tarea__lista{
+    width: 100%;
+    color: white;
+}
+.tarea__estado--valor{
+    height: 1.5rem;
+    width: 125px;
+    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tarea__estado--terminado{
+    background-color: map-get($color, septimo);
+}
+.tarea__estado--proceso{
+    background-color: map-get($color, octavo);
+}
+.tarea__estado--hacer{
+    background-color: map-get($color, segundo);
+}
+.tarea__prioridad--valor{
+    @extend .tarea__estado--valor;
+}
+.tarea__prioridad--alto{
+    background-color: map-get($color, cuarto);
+}
+.tarea__prioridad--medio{
+    background-color: map-get($color, tercero);
+}
+.tarea__prioridad--bajo{
+    background-color: map-get($color, primero);
+}
+.tarea__item{
+    position: relative;
+    margin: 10px auto;
+    width: 87%;
+    height: 10rem;
+    padding: 4%;
+    background-color: map-get($color, sexto);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 8%;
+    grid-template-areas:    "estado        opciones "
+                            "nombre        nombre   "
+                            "fecha         fecha    "
+                            "colaboradores prioridad";
+    align-items: center;
+    &::before{
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 10rem;
+        width: 7px;
+        background-color: map-get($color, primero);
+        border-radius: 10px 0 0 10px;
+    }
+}
+.tarea__colaboradores--valor{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    div{
+        width: 25px;
+        height: 25px;
+        background-color: rgba(255, 255, 255, 0.541);
+        border-radius: 50px;
+        margin-left: 5px;
+        img{
+            width: 25px;
+            height: 25px;
+            border-radius: 50px;
+        }
+    }
+}
+
+.tarea__estado{
+    grid-area: estado;
+}
+.tarea__opciones{
+    grid-area: opciones;
+    justify-self: right;
+}
+.tarea__nombre{
+    grid-area: nombre;
+    font-weight: map-get($weight, 500);
+}
+.tarea__fecha{
+    grid-area: fecha;
+    font-size: map-get($size, sm);;
+}
+.tarea__colaboradores{
+    grid-area: colaboradores;
+}
+.tarea__prioridad{
+    grid-area: prioridad;
+    justify-self: right;
+}
+.bx-x-circle{
+    position: absolute;
+    font-size: 2rem;
+    color: red;
+    width: auto;
+    top: 2%;
+    right: 2.5%;
+    cursor: pointer;
+}
+.bx-edit:hover{
+    color: map-get($color, primero);
+}
+.bx-trash-alt:hover{
+    color: map-get($color, cuarto);
+}

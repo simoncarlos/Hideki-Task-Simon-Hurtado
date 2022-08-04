@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,700&display=swap');
+
+$primaryFont: 'Roboto', sans-serif;
+
+$size:(
+    normal: 14px,
+    sm: 12.25px
+);
+
+$weight:(
+    700: 700,
+    500: 500,
+    400: 400,
+    300: 300
+);
+
+$color:(
+    primero: #00C4CC,
+    segundo: #e43397,
+    tercero: #fbbd0d,
+    cuarto: #fd1f4a,
+    quinto: #2d2c2e,
+    sexto: #38374f,
+    septimo: #04ba71,
+    octavo: #fc811d,
+    dark: #272638,
+    light: #F9F6FD,
+    transparentLight: #f9f6fd21
+);

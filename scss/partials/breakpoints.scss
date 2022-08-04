@@ -1,0 +1,94 @@
+@media screen and (min-width: 600px){
+    .tarea__item{
+        margin: 10px auto;
+        width: 80%;
+        height: 8rem;
+        padding: 0 2.5%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:    "estado         estado  opciones  "
+                                "nombre         nombre  prioridad "
+                                "colaboradores  fecha   fecha     ";
+        &::before{
+            height: 8rem;
+        }
+    }
+    .tarea__fecha{
+        justify-self: right;
+    }
+    .tarea__modificar{
+        width: 540px;
+    }
+}
+@media screen and (min-width: 992px){
+    .tarea__item{
+        margin: 10px auto;
+        width: 90%;
+        height: 42.5px;
+        border-radius: 10px;
+        padding: 0;
+        grid-template-columns: 30% 150px 15% 15% 150px 10%;
+        grid-template-rows: 1fr;
+        grid-template-areas: "nombre estado colaboradores fecha prioridad opciones";
+        &::before{
+            top: 0;
+            left: 0;
+            height: 42.5px;
+        }
+        > * {
+            padding: 7.5px;
+            width: 100%;
+            height: 100%;
+            background-color: map-get($color, sexto);
+            align-items: center;
+            display: flex;
+            &:nth-child(n + 2)::before{
+                content: ' ';
+                position: absolute;
+                background-color: map-get($color, transparentLight);
+                margin-left: -7.5px;
+                height: 42.5px;
+                width: 0.005%;
+            }
+        }
+
+    }
+    .tarea__estado{
+        justify-self: center;
+        > * {
+            margin: auto;
+        }
+    }
+    .tarea__opciones{
+        justify-self: center;
+        border-radius: 0 10px 10px 0;
+        i{
+            font-size: 1.4rem;
+            margin: auto;
+            cursor: pointer;
+        }
+    }
+    .tarea__nombre{
+        justify-self: left;
+        padding-left: 10%;
+        border-radius: 10px;
+    }
+    .tarea__fecha{
+        justify-self: center;
+        > * {
+            margin-left: 20px;
+        }
+    }
+    .tarea__colaboradores{
+        justify-self: center;
+        > * {
+            margin-left: 20px;
+        }
+    }
+    .tarea__prioridad{
+        justify-self: center;
+        > * {
+            margin: auto;
+        }
+    }
+}
