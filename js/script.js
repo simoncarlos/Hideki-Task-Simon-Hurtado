@@ -33,6 +33,19 @@ class Usuario{
     }
 }
 
+function crearTareas(){
+    let boton = document.querySelector(".bxs-message-square-add");
+    boton.addEventListener("click", () =>{
+
+        let nuevoId = arrayTareas[0].id + 1;
+        arrayTareas.unshift(new Tarea( nuevoId , " ", "Terminado" ,   [ 1 , 2 , 3 ] , "6 ene" ,  "19 ene" ,  "Medio" , " " ));
+        mostrarTareas();
+        let click = document.getElementById(nuevoId);
+        click.click();
+
+    });
+}
+
 function mostrarTareas(){
     console.log(arrayTareas);
     let listaTareas = document.querySelector(".tarea__lista");
@@ -73,7 +86,7 @@ function mostrarTareas(){
                                         <div class="tarea__prioridad">
                                             <div class="tarea__prioridad--valor tarea__prioridad--${colorPrioridad}">${element.prioridad}</div>
                                         </div>
-                                        <div class="tarea__opciones"> <i id="${element.id}" class='bx bx-edit'></i><i id="borrar${element.id}" class='bx bx-trash-alt'></i> </div>
+                                        <div class="tarea__opciones"> <i id="${element.id}" class='bx bx-edit' data-bs-toggle="modal" data-bs-target="#exampleModal"></i><i id="borrar${element.id}" class='bx bx-trash-alt'></i> </div>
                                     </div>`;
 
         let idTareaColaboradores = "tarea"+element.id;
@@ -103,7 +116,7 @@ function modificarTareas(){
             });
             modificar.innerHTML = " ";//${arrayTareas[ (arrayTareas.length - e.target.id) ].nombre}
             modificar.innerHTML += `<div class="tarea__modificar">  
-                                        <i class='bx bx-x-circle'></i>
+                                        <i class='bx bx-x-circle' data-bs-dismiss="modal"></i>
                                         <label id="placeholder">Nombre de la tarea</label>
                                         <input type="text" id="nombre" class="tarea__modificar--nombre" value="${arrayTareas[indicePosicion].nombre}">
 
@@ -134,16 +147,16 @@ function modificarTareas(){
                                             <label for="baja">Bajo</label>
                                         </div>
                                         <div class="tarea__participantes">
-                                            <p id="placeholder5">Participantes</p>
+                                            <p id="placeholder5">Colaboradores</p>
                                             <ul class="tarea__modificar--profiles">
                                             </ul>
                                         </div>
                                     </div>`;
-            modificar.style.display = "block";
-            let botonCerrar = document.querySelector(".bx-x-circle");
-            botonCerrar.addEventListener("click", () => {
-                modificar.style.display = "none";
-            });
+            //modificar.style.display = "block";
+            //let botonCerrar = document.querySelector(".bx-x-circle");
+            //botonCerrar.addEventListener("click", () => {
+            //    modificar.style.display = "none";
+            //});
 
             let listaColaboradores = document.querySelector(".tarea__modificar--profiles");
 
@@ -273,7 +286,7 @@ function eliminarTareas(){
 }
 
 //Entrega de DOM
-arrayTareas.unshift(new Tarea( 1 , "Responsive Design", "Terminado" ,   [ 1 , 2 , 3 , 4 , 5 ] , "6 ene" ,    "19 ene" ,  "Medio" , "Hacer diseño responsivo desitio web xdxdxd" ));
+arrayTareas.unshift(new Tarea( 1 , "Responsive Design", "Terminado" ,   [ 1 , 2 , 3 ] , "6 ene" ,    "19 ene" ,  "Medio" , "Hacer diseño responsivo desitio web xdxdxd" ));
 arrayTareas.unshift(new Tarea( 2 , "Web Development",   "En proceso" ,  [ 2 , 3 , 4 ] , "17 ene" ,   "13 feb" ,  "Alto" , "Hacer diseño responsivo desitio web xdxdxd" ));
 arrayTareas.unshift(new Tarea( 3 , "Databases",         "Comenzar" ,    [ 3 , 4 , 5 ] , "23 feb" ,   "1 mar" ,   "Bajo" , "Hacer diseño responsivo desitio web xdxdxd" ));
 arrayTareas.unshift(new Tarea( 4 , "Final Proyect",     "En proceso" ,  [ 4 , 5 , 6 ] , "9 may" ,    "19 may" ,  "Medio" , "Hacer diseño responsivo desitio web xdxdxd" ));
@@ -291,7 +304,7 @@ arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,  
 
 console.log(arrayUsuarios);
 
-
+crearTareas();
 mostrarTareas();
 
 

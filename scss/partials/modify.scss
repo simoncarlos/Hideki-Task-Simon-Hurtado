@@ -57,14 +57,14 @@
     left: 5%;
 }
 #placeholder3{
-    top: 285px;
+    top: 305px;
 }
 #placeholder4{
-    top: 490px;
+    top: 508px;
     left: 5%;
 }
 #placeholder5{
-    top: 675px;
+    top: 700px;
     left: 5%;
 }
 .tarea__modificar--descripcion{
@@ -137,6 +137,7 @@
         margin: 20px 40px;
         width: 100%;
         display: flex;
+        align-items: center;
         img{
             width: 3rem;
             height: 3rem;
@@ -145,23 +146,44 @@
         article{
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
+            justify-content: center;
             width: 100%;
-            padding-top: 10px;
+            padding: 10px 0 0 10px;
             .tarea__perfil--nombre{
                 font-size: map-get($size, normal);
+                padding: 0;
+                margin: 0;
             }
             .tarea__perfil--rol{
-                font-size: map-get($size, sm);;
+                font-size: map-get($size, sm);
+                padding: 0;
+                margin: 0;
             }
         }
     }
 }
 .aparecer{
     display: block;
-    transition: all 1s ease;
 }
 .desaparecer{
     display: none;
-    transition: all 1s ease;
+}
+
+//Crear
+
+.tarea__crear{
+    margin: 40px auto;
+    background-color: map-get($color, primero);
+    border-radius: 50px;
+    padding: 1rem;
+    width: 4.5rem;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.3);
+        transition: all 1s ease;
+    }
+    i{
+        font-size: 2.5rem;
+        color: white;
+    }
 }
