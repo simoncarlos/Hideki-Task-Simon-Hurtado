@@ -74,7 +74,7 @@ ul li {
   .tarea__colaboradores--valor div {
     width: 25px;
     height: 25px;
-    background-color: rgba(255, 255, 255, 0.541);
+    background-color: white;
     border-radius: 50px;
     margin-left: 5px; }
     .tarea__colaboradores--valor div img {
