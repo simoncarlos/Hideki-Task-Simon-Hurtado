@@ -36,6 +36,18 @@ function crearTareas(){
         document.getElementById(nuevoId).click(); //Se realiza click en el boton apenas creado el evento para modificarlo 
     });
 }
+function mostrarUsuarios(){
+    let container = document.querySelector(".usuarios ul");
+    arrayUsuarios.forEach( usuario => {
+        container.innerHTML +=  `<li>
+                                    <img src="assets/profiles/${usuario.fotoSrc}">
+                                    <article>
+                                        <p class="usuario__perfil--nombre">${usuario.nombre}</p>
+                                        <p class="usuario__perfil--rol">${usuario.rol}</p>
+                                    </article>
+                                </li>`;
+    });
+}
 
 function mostrarTareas(){
     let listaTareas = document.querySelector(".tarea__lista");
@@ -145,14 +157,17 @@ function modificarTareas(){
             arrayTareas[ indicePosicion ].colaboradores.forEach( element => {
                 let posicion = arrayUsuarios.findIndex( usuario => usuario.id == element );
                 document.querySelector(".tarea__modificar--profiles").innerHTML += `
-                                                <li id="${element}">
+                                                <li class="delete${element}">
+                                                    <div id="delete${element}" class='bx bx-user-minus'></div>
                                                     <img src="assets/profiles/${arrayUsuarios[posicion].fotoSrc}">
                                                     <article>
                                                         <p class="tarea__perfil--nombre">${arrayUsuarios[posicion].nombre}</p>
                                                         <p class="tarea__perfil--rol">${arrayUsuarios[posicion].rol}</p>
                                                     </article>
-                                                </li>`; 
+                                                </li>`;
             });
+
+            document.querySelector(".tarea__modificar--profiles").innerHTML += `<p class="tarea__añadir--colaboradores"><i class='bx bx-user-plus' ></i> Añadir colaboradores</p>`;
             // Segun el valor del estado de la tarea, se va a mostrar como checked el que coincida con el del array de las tareas
             if( arrayTareas[ indicePosicion ].estado == "Terminado" ){
                 document.getElementById("terminado").checked = true;
@@ -167,6 +182,22 @@ function modificarTareas(){
             }
             
             //Escucha de eventos
+            let participantes = document.querySelectorAll(".bx-user-minus");//Eliminar colaboradores
+            participantes.forEach( participante => {
+                participante.addEventListener("click", (e)=>{
+                    //alert(e.target.id);
+                    let position = arrayTareas[indicePosicion].colaboradores.findIndex((i)=>{
+                        let comparacion = "delete" + i;
+                        return comparacion == e.target.id
+                    });
+                    arrayTareas[ indicePosicion ].colaboradores.splice( position , 1);
+                    let borrarColaborador = document.querySelector("."+ e.target.id);//arreglar esto
+                    borrarColaborador.style.display = "none";
+                    mostrarTareas();
+                });
+            });
+
+
             let name = document.querySelector(".tarea__modificar--nombre"); 
             name.addEventListener("change", () => {
                 arrayTareas[ indicePosicion ].nombre = name.value;
@@ -180,30 +211,26 @@ function modificarTareas(){
             });
 
             document.querySelectorAll('input[type=radio][name="estado"]').forEach( option => { 
-                option.addEventListener('change', () => {
+                option.addEventListener('change', () => { //Esta funcion se pude optimizar si se tiene el mismo id como valor de .prioridad, ademas se puede modificar el contenido si se usa .uppercase en la primera letra
+                    arrayTareas[ indicePosicion ].estado = "Comenzar";
                     if( option.id == "terminado" ){
                         arrayTareas[ indicePosicion ].estado = "Terminado";
                     }
                     else if( option.id == "enProceso" ){
                         arrayTareas[ indicePosicion ].estado = "En Proceso";
                     }
-                    else{
-                        arrayTareas[ indicePosicion ].estado = "Comenzar";
-                    }
                     mostrarTareas();
                 }); 
             });
 
             document.querySelectorAll('input[type=radio][name="prioridad"]').forEach( option => { 
-                option.addEventListener('change', () => {
+                option.addEventListener('change', () => { //Esta funcion se pude optimizar si se tiene el mismo id como valor de .prioridad, ademas se puede modificar el contenido si se usa .uppercase en la primera letra
+                    arrayTareas[indicePosicion].prioridad = "Bajo";
                     if( option.id == "alta" ){
                         arrayTareas[indicePosicion].prioridad = "Alto";
                     }
                     else if( option.id == "media" ){
                         arrayTareas[indicePosicion].prioridad = "Medio";
-                    }
-                    else{
-                        arrayTareas[indicePosicion].prioridad = "Bajo";
                     }
                     mostrarTareas(); 
                 }); 
@@ -244,5 +271,9 @@ arrayUsuarios.unshift(new Usuario( 4 , "Diana",     "contraseña" , "Tutora" ,  
 arrayUsuarios.unshift(new Usuario( 5 , "Mariano",   "contraseña" , "Coordinador", "13.png" , ["5", "6", "7"]  ));
 arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,     "7.png" ,  ["6", "7", "8"]  ));
 
+//localStorage.setItem("nombre", "Carlitos");
+//sessionStorage.setItem("apellido", "Simon");
+
 crearTareas();
 mostrarTareas();
+mostrarUsuarios();

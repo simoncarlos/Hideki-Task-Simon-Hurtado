@@ -1,0 +1,76 @@
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 1fr;
+    grid-template-areas: "menues    contenido";
+}
+.menu{
+    grid-area: menues;
+    background-color: red;
+    width: 100%;
+}
+.contenido{
+    grid-area: contenido;
+}
+.contenido{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 30% 50% 20%;
+    grid-template-areas:"calendario  calendario    "
+                        "tareas      usuarios      "
+                        "tareas      notificaciones";
+}
+.calendario{
+    grid-area: calendario;
+    background-color: blue;
+    width: 100%;
+}
+.tareas{
+    grid-area: tareas;
+    width: 100%;
+    overflow-y: auto;
+}
+.usuarios{
+    grid-area: usuarios;
+    color: white;
+    width: 100%;
+    padding: 3%;
+    overflow-y: auto;
+    ul{
+        width: 100%;
+        height: auto;
+        li{
+            display: flex;
+            margin: 20px 0;
+            width: 100%;
+            align-items: center;
+            img{
+                width: 3rem;
+                height: 3rem;
+            }
+            article{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+                padding: 10px 0 0 20px;
+                .usuario__perfil--nombre{
+                    font-size: map-get($size, normal);
+                    padding: 0;
+                    margin: 0;
+                }
+                .usuario__perfil--rol{
+                    font-size: map-get($size, sm);
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+        }  
+    }
+}
+.notificaciones{
+    grid-area: notificaciones;
+    background-color: yellow;
+    width: 100%;
+}

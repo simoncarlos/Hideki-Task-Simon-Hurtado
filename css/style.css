@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,700&display=swap");
 * {
   margin: 0;
@@ -11,6 +12,74 @@ body {
 
 ul li {
   list-style: none; }
+
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "menues    contenido"; }
+
+.menu {
+  grid-area: menues;
+  background-color: red;
+  width: 100%; }
+
+.contenido {
+  grid-area: contenido; }
+
+.contenido {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-template-rows: 30% 50% 20%;
+  grid-template-areas: "calendario  calendario    " "tareas      usuarios      " "tareas      notificaciones"; }
+
+.calendario {
+  grid-area: calendario;
+  background-color: blue;
+  width: 100%; }
+
+.tareas {
+  grid-area: tareas;
+  width: 100%;
+  overflow-y: auto; }
+
+.usuarios {
+  grid-area: usuarios;
+  color: white;
+  width: 100%;
+  padding: 3%;
+  overflow-y: auto; }
+  .usuarios ul {
+    width: 100%;
+    height: auto; }
+    .usuarios ul li {
+      display: flex;
+      margin: 20px 0;
+      width: 100%;
+      align-items: center; }
+      .usuarios ul li img {
+        width: 3rem;
+        height: 3rem; }
+      .usuarios ul li article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0 0 20px; }
+        .usuarios ul li article .usuario__perfil--nombre {
+          font-size: 14px;
+          padding: 0;
+          margin: 0; }
+        .usuarios ul li article .usuario__perfil--rol {
+          font-size: 12.25px;
+          padding: 0;
+          margin: 0; }
+
+.notificaciones {
+  grid-area: notificaciones;
+  background-color: yellow;
+  width: 100%; }
 
 .tarea__lista {
   width: 100%;
@@ -232,7 +301,6 @@ ul li {
   width: 90%;
   margin: 40px auto;
   padding: 20px 0;
-  justify-content: center;
   border: 1px solid #e43397;
   border-radius: 15px; }
   .tarea__modificar--profiles li {
@@ -240,6 +308,15 @@ ul li {
     width: 100%;
     display: flex;
     align-items: center; }
+    .tarea__modificar--profiles li .bx-user-minus {
+      font-size: 1.6rem;
+      margin: 0 20px 0 10px;
+      padding-top: 10px;
+      color: white;
+      transition: color 1s ease;
+      cursor: pointer; }
+      .tarea__modificar--profiles li .bx-user-minus:hover {
+        color: #fd1f4a; }
     .tarea__modificar--profiles li img {
       width: 3rem;
       height: 3rem;
@@ -259,6 +336,19 @@ ul li {
         padding: 0;
         margin: 0; }
 
+.tarea__añadir--colaboradores {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 1s ease; }
+  .tarea__añadir--colaboradores i {
+    font-size: 1.5rem;
+    margin: 0 15px 0 7.5px; }
+  .tarea__añadir--colaboradores:hover {
+    color: #04ba71; }
+
 .aparecer {
   display: block; }
 
@@ -271,10 +361,11 @@ ul li {
   border-radius: 50px;
   padding: 1rem;
   width: 4.5rem;
-  cursor: pointer; }
+  cursor: pointer;
+  -webkit-transition: transform 1s;
+  transition: transform 1s; }
   .tarea__crear:hover {
-    transform: scale(1.3);
-    transition: all 1s ease; }
+    transform: scale(1.3); }
   .tarea__crear i {
     font-size: 2.5rem;
     color: white; }
