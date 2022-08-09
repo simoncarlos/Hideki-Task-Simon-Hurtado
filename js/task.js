@@ -40,7 +40,7 @@ function mostrarUsuarios(){
     let container = document.querySelector(".usuarios ul");
     arrayUsuarios.forEach( usuario => {
         container.innerHTML +=  `<li>
-                                    <img src="assets/profiles/${usuario.fotoSrc}">
+                                    <img src="../assets/profiles/${usuario.fotoSrc}">
                                     <article>
                                         <p class="usuario__perfil--nombre">${usuario.nombre}</p>
                                         <p class="usuario__perfil--rol">${usuario.rol}</p>
@@ -52,52 +52,69 @@ function mostrarUsuarios(){
 function mostrarTareas(){
     let listaTareas = document.querySelector(".tarea__lista");
     listaTareas.innerHTML = " ";
+
+    let usuarioIngresado = "";
+
+    if( localStorage.getItem("recordar") == "true" ){
+        usuarioIngresado = parseInt(localStorage.getItem("indiceUsuario"));
+    }
+    else{
+        usuarioIngresado = parseInt(sessionStorage.getItem("indiceUsuario"));
+    }
+
     arrayTareas.forEach( element => {
+
+        if( arrayUsuarios[ usuarioIngresado ].tareas.includes(element.id) ){
+
+            //inicio if condicional que va a mostrar solo las tareas que coincidan con el usuario iniciado
+            let colorPrioridad = "bajo";
+            let colorEstado = "proceso";
+            // Se asignan a la variables colorPrioridad y colorEstado para luego insertarlas en el HTML como clases, segun su prioridad o estado
+            if( element.prioridad == "Alto" ){
+                colorPrioridad = "alto";
+            }else if( element.prioridad == "Medio" ){
+                colorPrioridad = "medio";
+            }
         
-        let colorPrioridad = "bajo";
-        let colorEstado = "proceso";
-        // Se asignan a la variables colorPrioridad y colorEstado para luego insertarlas en el HTML como clases, segun su prioridad o estado
-        if( element.prioridad == "Alto" ){
-            colorPrioridad = "alto";
-        }else if( element.prioridad == "Medio" ){
-            colorPrioridad = "medio";
+            if( element.estado == "Terminado" ){
+                colorEstado = "terminado";
+            }else if( element.estado == "Comenzar" ){
+                colorEstado = "hacer";
+            }
+            // Datos de cada tarea
+            listaTareas.innerHTML += `  <div class="tarea__item">
+                                            <div class="tarea__nombre">${element.nombre}</div>
+                                            <div class="tarea__estado">
+                                                <div class="tarea__estado--valor tarea__estado--${colorEstado}">${element.estado}</div>
+                                            </div>
+                                            <div class="tarea__colaboradores">
+                                                <div id="tarea${element.id}" class="tarea__colaboradores--valor">
+                                                </div>
+                                            </div>
+                                            <div class="tarea__fecha">
+                                                <div class="tarea__fecha--valor">
+                                                    ${element.inicio}  -  ${element.fin}
+                                                </div>
+                                            </div>
+                                            <div class="tarea__prioridad">
+                                                <div class="tarea__prioridad--valor tarea__prioridad--${colorPrioridad}">${element.prioridad}</div>
+                                            </div>
+                                            <div class="tarea__opciones"> <i id="${element.id}" class='bx bx-edit' data-bs-toggle="modal" data-bs-target="#exampleModal"></i><i id="borrar${element.id}" class='bx bx-trash-alt'></i> </div>
+                                        </div>`;
+
+            element.colaboradores.forEach( idColaborador => {
+                arrayUsuarios.forEach( usuario =>{
+                    if( usuario.id == idColaborador ){ 
+                        document.getElementById("tarea"+element.id).innerHTML += `   <div>
+                                                                                        <img src="../assets/profiles/${usuario.fotoSrc}">
+                                                                                    </div>`;
+                    }
+                });
+            });
+            //fin if condicional que va a mostrar solo las tareas que coincidan con el usuario iniciado
+
         }
     
-        if( element.estado == "Terminado" ){
-            colorEstado = "terminado";
-        }else if( element.estado == "Comenzar" ){
-            colorEstado = "hacer";
-        }
-        // Datos de cada tarea
-        listaTareas.innerHTML += `  <div class="tarea__item">
-                                        <div class="tarea__nombre">${element.nombre}</div>
-                                        <div class="tarea__estado">
-                                            <div class="tarea__estado--valor tarea__estado--${colorEstado}">${element.estado}</div>
-                                        </div>
-                                        <div class="tarea__colaboradores">
-                                            <div id="tarea${element.id}" class="tarea__colaboradores--valor">
-                                            </div>
-                                        </div>
-                                        <div class="tarea__fecha">
-                                            <div class="tarea__fecha--valor">
-                                                ${element.inicio}  -  ${element.fin}
-                                            </div>
-                                        </div>
-                                        <div class="tarea__prioridad">
-                                            <div class="tarea__prioridad--valor tarea__prioridad--${colorPrioridad}">${element.prioridad}</div>
-                                        </div>
-                                        <div class="tarea__opciones"> <i id="${element.id}" class='bx bx-edit' data-bs-toggle="modal" data-bs-target="#exampleModal"></i><i id="borrar${element.id}" class='bx bx-trash-alt'></i> </div>
-                                    </div>`;
-
-        element.colaboradores.forEach( idColaborador => {
-            arrayUsuarios.forEach( usuario =>{
-                if( usuario.id == idColaborador ){ 
-                    document.getElementById("tarea"+element.id).innerHTML += `   <div>
-                                                                                    <img src="assets/profiles/${usuario.fotoSrc}">
-                                                                                </div>`;
-                }
-            });
-        });
     });
 
     modificarTareas();
@@ -159,7 +176,7 @@ function modificarTareas(){
                 document.querySelector(".tarea__modificar--profiles").innerHTML += `
                                                 <li class="delete${element}">
                                                     <div id="delete${element}" class='bx bx-user-minus'></div>
-                                                    <img src="assets/profiles/${arrayUsuarios[posicion].fotoSrc}">
+                                                    <img src="../assets/profiles/${arrayUsuarios[posicion].fotoSrc}">
                                                     <article>
                                                         <p class="tarea__perfil--nombre">${arrayUsuarios[posicion].nombre}</p>
                                                         <p class="tarea__perfil--rol">${arrayUsuarios[posicion].rol}</p>
@@ -264,16 +281,60 @@ arrayTareas.unshift(new Tarea( 6 , "Entrevistas",       "En proceso" ,  [ 3 , 2 
 arrayTareas.unshift(new Tarea( 7 , "Benchmarking",      "Comenzar" ,    [ 1 , 2 , 3 , 5] ,  "1 jul" ,    "3 agos" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" ));
 arrayTareas.unshift(new Tarea( 8 , "POV + MVP",         "En proceso" ,  [ 3 , 4 ] ,         "23 agos" ,  "23 sep" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" ));
 
-arrayUsuarios.unshift(new Usuario( 1 , "Solange",   "contraseña" , "Tutora" ,     "1.png" ,  ["1", "2", "3"]  ));
-arrayUsuarios.unshift(new Usuario( 2 , "Florencia", "contraseña" , "Profesora",   "18.png" , ["2", "3", "4"]  ));
-arrayUsuarios.unshift(new Usuario( 3 , "Marco",     "contraseña" , "Tutor" ,      "12.png" , ["3", "4", "5"]  ));
-arrayUsuarios.unshift(new Usuario( 4 , "Diana",     "contraseña" , "Tutora" ,     "19.png" , ["4", "5", "6"]  ));
-arrayUsuarios.unshift(new Usuario( 5 , "Mariano",   "contraseña" , "Coordinador", "13.png" , ["5", "6", "7"]  ));
-arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,     "7.png" ,  ["6", "7", "8"]  ));
+arrayUsuarios.unshift(new Usuario( 1 , "Solange",   "contraseña" , "Tutora" ,     "1.png" ,  [ 1 , 2 , 3 ]  ));
+arrayUsuarios.unshift(new Usuario( 2 , "Florencia", "contraseña" , "Profesora",   "18.png" , [ 2 , 3 , 4 ]  ));
+arrayUsuarios.unshift(new Usuario( 3 , "Marco",     "contraseña" , "Tutor" ,      "12.png" , [ 3 , 4 , 5 ]  ));
+arrayUsuarios.unshift(new Usuario( 4 , "Diana",     "contraseña" , "Tutora" ,     "19.png" , [ 4 , 5 , 6 ]  ));
+arrayUsuarios.unshift(new Usuario( 5 , "Mariano",   "contraseña" , "Coordinador", "13.png" , [ 5 , 6 , 7 ]  ));
+arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,     "7.png" ,  [ 6 , 7 , 8 ]  ));
 
-//localStorage.setItem("nombre", "Carlitos");
-//sessionStorage.setItem("apellido", "Simon");
+function generarIndiceRegistrado( storage ){
 
-crearTareas();
-mostrarTareas();
-mostrarUsuarios();
+    let indexUsuarioRegistrado = arrayUsuarios.findIndex( usuario => {
+        return usuario.nombre == storage.getItem("usuario") 
+    });
+    storage.setItem("indiceUsuario", indexUsuarioRegistrado);
+}
+
+function removerItems( storage ){ // Elimina el storage correspondiente a donde se encuentran los datos
+    storage.removeItem("usuario");
+    storage.removeItem("contraseña");
+    storage.removeItem("indiceUsuario");
+    localStorage.removeItem("recordar");
+}
+
+function cerrarSesion(){
+    let cerrar = document.getElementById("cerrarSesion");
+    cerrar.addEventListener("click", () => {
+        if( localStorage.getItem("recordar") == "false" ){
+            removerItems( sessionStorage );
+            window.location.assign("../index.html");
+        }
+        else{
+            removerItems( localStorage );
+            window.location.assign("../index.html");
+        }
+    });
+}
+
+window.onload = () => {
+
+    if( localStorage.getItem("recordar") == "false" ){
+        // Se eliminan los valores dentro del localStorage menos del "recordar", luego se setea en sessionStorage el indice del usuario que ingresó
+        sessionStorage.setItem("usuario", localStorage.getItem("usuario") );
+        sessionStorage.setItem("contraseña", localStorage.getItem("contraseña") );
+        localStorage.removeItem("usuario");
+        localStorage.removeItem("contraseña");
+        generarIndiceRegistrado( sessionStorage );
+    }
+    else{
+        // Se setea en localStorage el indice del usuario que ingresó
+        generarIndiceRegistrado( localStorage );
+    }
+
+    cerrarSesion();
+    crearTareas();
+    mostrarTareas();
+    mostrarUsuarios();
+
+};

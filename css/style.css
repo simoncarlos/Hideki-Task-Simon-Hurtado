@@ -22,7 +22,6 @@ body {
 
 .menu {
   grid-area: menues;
-  background-color: red;
   width: 100%; }
 
 .contenido {
