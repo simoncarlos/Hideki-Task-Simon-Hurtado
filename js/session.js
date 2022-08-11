@@ -46,10 +46,12 @@ function guardarEnStorage (user, contraseña, storage){
     localStorage.setItem("usuario", user);
     localStorage.setItem("contraseña", contraseña);
     localStorage.setItem("recordar", storage);
+
 }
 
 function verificarUsuario(user, password, recordar){
     
+    let validacion = false;
     arrayUsuarios.forEach( usuario => {
 
         if(user.value == usuario.nombre){
@@ -57,14 +59,20 @@ function verificarUsuario(user, password, recordar){
                 if(recordar.checked){
                     guardarEnStorage( usuario.nombre, usuario.contraseña, true );
                     window.location.assign("pages/task.html");
+                    validacion = true;
                 }
                 else{
                     guardarEnStorage( usuario.nombre, usuario.contraseña, false );
                     window.location.assign("pages/task.html");
+                    validacion = true;
                 }
             }
         }
     });
+
+    if( !validacion ){
+        alert("Usuario o contraseña incorrectos");
+    }
 
 }
 
@@ -74,7 +82,7 @@ function iniciarSesion(){
     let password = document.getElementById("password");
     let recordar = document.getElementById("recordarUsuario");
 
-    let iniciarSesion = document.getElementById("iniciarSesion");
+    let iniciarSesion = document.getElementById("iniciarSesion"); // Boton de inicio de sesion
 
     iniciarSesion.addEventListener("click", () => {
         
@@ -89,17 +97,15 @@ function añadirEventoSesion(){
     let ingresar = document.getElementById("ingresar");
 
     ingresar.addEventListener("click", () =>{
-        if( localStorage.getItem("usuario") == undefined ){
-            iniciarSesion(); // Si no existe el usuario recordado, entonces pide inicio de sesión.
+
+        if( localStorage.getItem("recordar") == "true" ){
+            window.location.assign("pages/task.html"); 
         }
         else{
-            if( localStorage.getItem("recordar") == "true" ){
-                window.location.assign("pages/task.html"); // Si existe el usuario recordado, redirige directo a la pagina de tareas.
-            }
-            else{
-                iniciarSesion();
-            }
+            localStorage.clear();
+            iniciarSesion();
         }
+
     });
 
 }

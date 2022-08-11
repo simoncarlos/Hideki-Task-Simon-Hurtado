@@ -1,6 +1,6 @@
 .tarea__lista{
     width: 100%;
-    color: white;
+    padding: 0 2%;
 }
 .tarea__estado--valor{
     height: 1.5rem;
@@ -12,25 +12,31 @@
     align-items: center;
 }
 .tarea__estado--terminado{
-    background-color: map-get($color, septimo);
+    background-color: map-get($color, quinto);
+    color: map-get($color, blanco);
 }
 .tarea__estado--proceso{
-    background-color: map-get($color, octavo);
+    background-color: map-get($color, sexto);
+    color: map-get($color, blanco);
 }
 .tarea__estado--hacer{
     background-color: map-get($color, segundo);
+    color: map-get($color, blanco);
 }
 .tarea__prioridad--valor{
     @extend .tarea__estado--valor;
 }
 .tarea__prioridad--alto{
     background-color: map-get($color, cuarto);
+    color: map-get($color, blanco);
 }
 .tarea__prioridad--medio{
     background-color: map-get($color, tercero);
+    color: map-get($color, blanco);
 }
 .tarea__prioridad--bajo{
     background-color: map-get($color, primero);
+    color: map-get($color, blanco);
 }
 .tarea__item{
     position: relative;
@@ -38,7 +44,7 @@
     width: 87%;
     height: 10rem;
     padding: 4%;
-    background-color: map-get($color, sexto);
+    background-color: map-get($color, blanco);
     border-radius: 10px;
     display: grid;
     grid-template-columns: 60% 40%;
@@ -49,6 +55,8 @@
                             "fecha         fecha    "
                             "colaboradores prioridad";
     align-items: center;
+    box-shadow:  6px 6px 14px #e7e9ed,
+                -6px -6px 14px #ffffff;
     &::before{
         content: ' ';
         position: absolute;
@@ -65,9 +73,12 @@
     align-items: center;
     justify-content: start;
     div{
+        position: relative;
         width: 25px;
         height: 25px;
-        background-color: rgb(255, 255, 255);
+        background-color: map-get($color, blanco);
+        box-shadow: -5px 5px 12px #999999,
+        5px -5px 12px #ffffff;
         border-radius: 50px;
         margin-left: 5px;
         img{
@@ -75,6 +86,18 @@
             height: 25px;
             border-radius: 50px;
         }
+    }
+    div:nth-child(0n+2){
+        left: -17px;
+    }
+    div:nth-child(0n+3){
+        left: -35px;
+    }
+    div:nth-child(0n+4){
+        left: -52px;
+    }
+    div:nth-child(0n+5){
+        left: -47px;
     }
 }
 
@@ -91,7 +114,7 @@
 }
 .tarea__fecha{
     grid-area: fecha;
-    font-size: map-get($size, sm);;
+    font-size: map-get($size, sm);
 }
 .tarea__colaboradores{
     grid-area: colaboradores;
@@ -114,4 +137,45 @@
 }
 .bx-trash-alt:hover{
     color: map-get($color, cuarto);
+}
+
+
+// Display Grid encabezado tareas  20% 20% 15% 15% 20% 10%;
+
+.tareas__categorias{
+    width: 100%;
+    padding: 0 2%;
+    color: map-get($color, dark);
+    display: flex;
+    align-items: center;
+    > * {
+    text-align: center;
+    font-size: map-get($size, sm);
+    color: map-get($color, dark )
+    }
+    .tarea__nombre--encabezado{
+        width: 20%;
+    }
+    .tarea__estado--encabezado{
+        width: 20%;
+    }
+    .tarea__colaboradores--encabezado{
+        width: 15%;
+    }
+    .tarea__fecha--encabezado{
+        width: 15%;
+    }
+    .tarea__prioridad--encabezado{
+        width: 20%;
+    }
+    .tarea__opciones--encabezado{
+        width: 10%;
+    }
+}
+.tarea__interlineado{
+    content: "";
+    margin: 10px auto 20px;
+    width: 93%;
+    height: 0.2px;
+    background-color: #38374f17;
 }

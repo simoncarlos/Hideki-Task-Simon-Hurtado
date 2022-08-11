@@ -6,7 +6,6 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #272638;
   font-family: "Roboto", sans-serif;
   font-size: 14px; }
 
@@ -16,73 +15,193 @@ ul li {
 body {
   height: 100vh;
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 7% 93%;
   grid-template-rows: 1fr;
   grid-template-areas: "menues    contenido"; }
 
 .menu {
   grid-area: menues;
-  width: 100%; }
+  width: 100%;
+  box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff; }
 
 .contenido {
   grid-area: contenido; }
 
 .contenido {
+  padding: 20px;
   display: grid;
-  grid-template-columns: 75% 25%;
-  grid-template-rows: 30% 50% 20%;
-  grid-template-areas: "calendario  calendario    " "tareas      usuarios      " "tareas      notificaciones"; }
+  grid-template-columns: 78% 20%;
+  grid-template-rows: 30% 46% 20%;
+  grid-template-areas: "calendario  calendario    " "tareas      usuarios      " "tareas      notificaciones";
+  background-color: #f6f8fc;
+  gap: 2%; }
 
 .calendario {
   grid-area: calendario;
-  background-color: blue;
-  width: 100%; }
+  background-color: white;
+  width: 100%;
+  border-radius: 20px; }
 
 .tareas {
+  margin-top: 50px;
   grid-area: tareas;
   width: 100%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  background-color: #f6f8fc; }
+  .tareas::-webkit-scrollbar {
+    width: 7px;
+    height: 8px; }
+  .tareas::-webkit-scrollbar-track {
+    background: #f6f8fc;
+    border-radius: 4px; }
+  .tareas::-webkit-scrollbar-thumb {
+    background: #00C4CC;
+    border-radius: 4px; }
+  .tareas::-webkit-scrollbar-thumb:hover {
+    background: #00C4CC; }
 
 .usuarios {
   grid-area: usuarios;
-  color: white;
+  color: #272638;
   width: 100%;
-  padding: 3%;
   overflow-y: auto; }
-  .usuarios ul {
+  .usuarios::-webkit-scrollbar {
+    width: 7px;
+    height: 8px; }
+  .usuarios::-webkit-scrollbar-track {
+    background: #f6f8fc;
+    border-radius: 4px; }
+  .usuarios::-webkit-scrollbar-thumb {
+    background: #00C4CC;
+    border-radius: 4px; }
+  .usuarios::-webkit-scrollbar-thumb:hover {
+    background: #00C4CC; }
+  .usuarios div {
     width: 100%;
-    height: auto; }
-    .usuarios ul li {
+    height: auto;
+    margin: 0;
+    padding: 5%; }
+    .usuarios div .usuarios--perfil {
       display: flex;
-      margin: 20px 0;
+      margin: 10px 0;
+      padding: 10px;
       width: 100%;
-      align-items: center; }
-      .usuarios ul li img {
+      align-items: center;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff; }
+      .usuarios div .usuarios--perfil img {
         width: 3rem;
         height: 3rem; }
-      .usuarios ul li article {
+      .usuarios div .usuarios--perfil article {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 100%;
-        padding: 10px 0 0 20px; }
-        .usuarios ul li article .usuario__perfil--nombre {
+        padding: 10px 0 0 10px; }
+        .usuarios div .usuarios--perfil article .usuario__perfil--nombre {
           font-size: 14px;
           padding: 0;
           margin: 0; }
-        .usuarios ul li article .usuario__perfil--rol {
+        .usuarios div .usuarios--perfil article .usuario__perfil--rol {
           font-size: 12.25px;
           padding: 0;
           margin: 0; }
 
 .notificaciones {
   grid-area: notificaciones;
-  background-color: yellow;
   width: 100%; }
+
+.menu {
+  color: white;
+  padding: 50% 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between; }
+  .menu__decoration {
+    display: flex;
+    align-items: center; }
+    .menu__decoration span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50px;
+      margin-left: 4px; }
+      .menu__decoration span:nth-child(0n+1) {
+        background-color: #ff5f56; }
+      .menu__decoration span:nth-child(0n+2) {
+        background-color: #ffbd2e; }
+      .menu__decoration span:nth-child(0n+3) {
+        background-color: #27c93f; }
+  .menu__logo {
+    width: 100%;
+    margin-top: 10px; }
+    .menu__logo img {
+      width: 100%;
+      margin: 0;
+      padding: 0; }
+    .menu__logo p {
+      font-size: 14px;
+      color: #fd1f4a; }
+  .menu__perfil {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .menu__perfil div {
+      width: 2.7rem;
+      height: 2.7rem;
+      background-color: rgba(146, 146, 146, 0.082);
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .menu__perfil div img {
+        width: 2.7rem;
+        height: 2.7rem;
+        border-radius: 50px; }
+    .menu__perfil .menu__usuario--nombre {
+      font-size: 12.25px;
+      color: #272638;
+      margin-top: 10px; }
+    .menu__perfil article {
+      height: 3 rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-left: 10px; }
+      .menu__perfil article p {
+        height: auto;
+        padding: 0;
+        margin: 0;
+        line-height: normal; }
+  .menu__usuario {
+    font-size: 14px; }
+  .menu__rol {
+    font-size: 12.25px; }
+  .menu__opciones {
+    width: 100%;
+    height: 100%;
+    padding-top: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    font-size: 14px;
+    color: #272638; }
+    .menu__opciones i {
+      font-size: 25px;
+      color: #272638;
+      cursor: pointer;
+      margin-bottom: 30px;
+      transition: all 1s ease; }
+      .menu__opciones i:hover {
+        color: #e43397; }
 
 .tarea__lista {
   width: 100%;
-  color: white; }
+  padding: 0 2%; }
 
 .tarea__estado--valor, .tarea__prioridad--valor {
   height: 1.5rem;
@@ -94,22 +213,28 @@ body {
   align-items: center; }
 
 .tarea__estado--terminado {
-  background-color: #04ba71; }
+  background-color: #04ba71;
+  color: white; }
 
 .tarea__estado--proceso {
-  background-color: #fc811d; }
+  background-color: #fc811d;
+  color: white; }
 
 .tarea__estado--hacer {
-  background-color: #e43397; }
+  background-color: #e43397;
+  color: white; }
 
 .tarea__prioridad--alto {
-  background-color: #fd1f4a; }
+  background-color: #fd1f4a;
+  color: white; }
 
 .tarea__prioridad--medio {
-  background-color: #fbbd0d; }
+  background-color: #fbbd0d;
+  color: white; }
 
 .tarea__prioridad--bajo {
-  background-color: #00C4CC; }
+  background-color: #00C4CC;
+  color: white; }
 
 .tarea__item {
   position: relative;
@@ -117,14 +242,15 @@ body {
   width: 87%;
   height: 10rem;
   padding: 4%;
-  background-color: #38374f;
+  background-color: white;
   border-radius: 10px;
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: repeat(4, 1fr);
   row-gap: 8%;
   grid-template-areas: "estado        opciones " "nombre        nombre   " "fecha         fecha    " "colaboradores prioridad";
-  align-items: center; }
+  align-items: center;
+  box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff; }
   .tarea__item::before {
     content: ' ';
     position: absolute;
@@ -140,15 +266,25 @@ body {
   align-items: center;
   justify-content: start; }
   .tarea__colaboradores--valor div {
+    position: relative;
     width: 25px;
     height: 25px;
     background-color: white;
+    box-shadow: -5px 5px 12px #999999, 5px -5px 12px #ffffff;
     border-radius: 50px;
     margin-left: 5px; }
     .tarea__colaboradores--valor div img {
       width: 25px;
       height: 25px;
       border-radius: 50px; }
+  .tarea__colaboradores--valor div:nth-child(0n+2) {
+    left: -17px; }
+  .tarea__colaboradores--valor div:nth-child(0n+3) {
+    left: -35px; }
+  .tarea__colaboradores--valor div:nth-child(0n+4) {
+    left: -52px; }
+  .tarea__colaboradores--valor div:nth-child(0n+5) {
+    left: -47px; }
 
 .tarea__estado {
   grid-area: estado; }
@@ -187,35 +323,75 @@ body {
 .bx-trash-alt:hover {
   color: #fd1f4a; }
 
+.tareas__categorias {
+  width: 100%;
+  padding: 0 2%;
+  color: #272638;
+  display: flex;
+  align-items: center; }
+  .tareas__categorias > * {
+    text-align: center;
+    font-size: 12.25px;
+    color: #272638; }
+  .tareas__categorias .tarea__nombre--encabezado {
+    width: 20%; }
+  .tareas__categorias .tarea__estado--encabezado {
+    width: 20%; }
+  .tareas__categorias .tarea__colaboradores--encabezado {
+    width: 15%; }
+  .tareas__categorias .tarea__fecha--encabezado {
+    width: 15%; }
+  .tareas__categorias .tarea__prioridad--encabezado {
+    width: 20%; }
+  .tareas__categorias .tarea__opciones--encabezado {
+    width: 10%; }
+
+.tarea__interlineado {
+  content: "";
+  margin: 10px auto 20px;
+  width: 93%;
+  height: 0.2px;
+  background-color: #38374f17; }
+
 .tarea__modificar {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #38374f;
+  background-color: #f6f8fc;
   border-radius: 10px;
   width: 90%;
   height: 90vh;
   padding: 20px;
   overflow-y: auto; }
+  .tarea__modificar::-webkit-scrollbar {
+    width: 7px;
+    height: 8px; }
+  .tarea__modificar::-webkit-scrollbar-track {
+    border-radius: 4px; }
+  .tarea__modificar::-webkit-scrollbar-thumb {
+    background: #e43397;
+    border-radius: 4px; }
+  .tarea__modificar::-webkit-scrollbar-thumb:hover {
+    background: #e43397; }
   .tarea__modificar p {
-    color: white;
+    color: #272638;
     margin-left: 10%; }
   .tarea__modificar > * {
     display: block; }
   .tarea__modificar input {
-    color: white;
+    color: #272638;
     border: 1px solid #e43397;
     border-radius: 15px; }
     .tarea__modificar input:focus {
-      color: white; }
+      color: #272638; }
   .tarea__modificar textarea {
-    color: white;
+    color: #272638;
     border: 1px solid #e43397;
     border-radius: 15px;
     resize: none; }
     .tarea__modificar textarea:focus {
-      color: white; }
+      color: #272638; }
 
 .tarea__modificar--nombre, .tarea__modificar--descripcion {
   background-color: transparent;
@@ -223,8 +399,7 @@ body {
   border-color: transparent;
   width: 90%;
   padding: 15px 15px;
-  margin: 30px auto;
-  color: white; }
+  margin: 30px auto; }
 
 #placeholder, #placeholder2, #placeholder3, #placeholder4, #placeholder5 {
   position: absolute;
@@ -232,7 +407,7 @@ body {
   left: 15%;
   width: auto;
   padding: 5px;
-  background-color: #38374f;
+  background-color: #f6f8fc;
   color: #e43397; }
 
 #placeholder2 {
@@ -265,7 +440,7 @@ body {
   .tarea__modificar--estado label, .tarea__modificar--prioridad label {
     display: inline-block;
     cursor: pointer;
-    color: white;
+    color: #272638;
     position: relative;
     width: 100%;
     padding: 5px auto;
@@ -311,7 +486,7 @@ body {
       font-size: 1.6rem;
       margin: 0 20px 0 10px;
       padding-top: 10px;
-      color: white;
+      color: #e43397;
       transition: color 1s ease;
       cursor: pointer; }
       .tarea__modificar--profiles li .bx-user-minus:hover {
@@ -355,24 +530,34 @@ body {
   display: none; }
 
 .tarea__crear {
-  margin: 40px auto;
-  background-color: #00C4CC;
+  margin: 40px auto 20px;
+  width: 175px;
+  height: 60px;
+  background-color: white;
   border-radius: 50px;
-  padding: 1rem;
-  width: 4.5rem;
+  box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  -webkit-transition: transform 1s;
   transition: transform 1s; }
   .tarea__crear:hover {
-    transform: scale(1.3); }
+    transform: scale(1.1); }
   .tarea__crear i {
-    font-size: 2.5rem;
-    color: white; }
+    font-size: 1.5rem;
+    color: #272638;
+    margin-right: 8px; }
+  .tarea__crear p {
+    color: #272638;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0; }
 
 @media screen and (min-width: 600px) {
   .tarea__item {
     margin: 10px auto;
-    width: 80%;
+    width: 100%;
     height: 8rem;
     padding: 0 2.5%;
     grid-template-columns: repeat(3, 1fr);
@@ -388,11 +573,10 @@ body {
 @media screen and (min-width: 992px) {
   .tarea__item {
     margin: 10px auto;
-    width: 90%;
     height: 42.5px;
     border-radius: 10px;
     padding: 0;
-    grid-template-columns: 30% 150px 15% 15% 150px 10%;
+    grid-template-columns: 20% 20% 15% 15% 20% 10%;
     grid-template-rows: 1fr;
     grid-template-areas: "nombre estado colaboradores fecha prioridad opciones"; }
     .tarea__item::before {
@@ -403,7 +587,7 @@ body {
       padding: 7.5px;
       width: 100%;
       height: 100%;
-      background-color: #38374f;
+      background-color: white;
       align-items: center;
       display: flex; }
       .tarea__item > *:nth-child(n + 2)::before {

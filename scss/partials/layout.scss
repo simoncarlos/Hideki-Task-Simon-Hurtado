@@ -1,49 +1,93 @@
 body{
     height: 100vh;
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 7% 93%;
     grid-template-rows: 1fr;
     grid-template-areas: "menues    contenido";
 }
 .menu{
     grid-area: menues;
     width: 100%;
+    box-shadow:  6px 6px 14px #e7e9ed,
+                -6px -6px 14px #ffffff;
 }
 .contenido{
     grid-area: contenido;
 }
 .contenido{
+    padding: 20px;
     display: grid;
-    grid-template-columns: 75% 25%;
-    grid-template-rows: 30% 50% 20%;
+    grid-template-columns: 78% 20%;
+    grid-template-rows: 30% 46% 20%;
     grid-template-areas:"calendario  calendario    "
                         "tareas      usuarios      "
                         "tareas      notificaciones";
+    background-color: map-get($color, light);
+    gap: 2%;
 }
 .calendario{
     grid-area: calendario;
-    background-color: blue;
+    background-color: map-get($color, blanco);
     width: 100%;
+    border-radius: 20px;
 }
 .tareas{
+    margin-top: 50px;
     grid-area: tareas;
     width: 100%;
     overflow-y: auto;
+    background-color: map-get($color, light);
+    &::-webkit-scrollbar {
+        width: 7px; 
+        height: 8px;  
+    }
+    &::-webkit-scrollbar-track {
+        background: map-get($color, light); 
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: map-get($color, primero);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: map-get($color, primero);
+    }
 }
 .usuarios{
     grid-area: usuarios;
-    color: white;
+    color: map-get($color, dark);
     width: 100%;
-    padding: 3%;
     overflow-y: auto;
-    ul{
+    &::-webkit-scrollbar {
+        width: 7px; 
+        height: 8px;  
+    }
+    &::-webkit-scrollbar-track {
+        background: map-get($color, light); 
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: map-get($color, primero);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: map-get($color, primero);
+    }
+    div{
         width: 100%;
         height: auto;
-        li{
+        margin: 0;
+        padding: 5%;
+        .usuarios--perfil{
             display: flex;
-            margin: 20px 0;
+            margin: 10px 0;
+            padding: 10px;
             width: 100%;
             align-items: center;
+            background-color: map-get($color, blanco);
+            border-radius: 10px;
+            box-shadow:  6px 6px 14px #e7e9ed,
+                        -6px -6px 14px #ffffff;
             img{
                 width: 3rem;
                 height: 3rem;
@@ -53,7 +97,7 @@ body{
                 flex-direction: column;
                 justify-content: center;
                 width: 100%;
-                padding: 10px 0 0 20px;
+                padding: 10px 0 0 10px;
                 .usuario__perfil--nombre{
                     font-size: map-get($size, normal);
                     padding: 0;
@@ -70,6 +114,5 @@ body{
 }
 .notificaciones{
     grid-area: notificaciones;
-    background-color: yellow;
     width: 100%;
 }

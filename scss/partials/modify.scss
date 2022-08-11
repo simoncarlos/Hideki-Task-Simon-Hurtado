@@ -3,34 +3,48 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: map-get($color, sexto);
+    background-color: map-get($color, light);
     border-radius: 10px;
     width: 90%;
     height: 90vh;
     padding: 20px;
     overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 7px; 
+        height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: map-get($color, segundo);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: map-get($color, segundo);
+    }
     p{
-        color: white;
+        color: map-get($color, dark);
         margin-left: 10%;
     }
     > * {
         display: block;
     }
     input{
-        color: white;
+        color: map-get($color, dark);
         border: 1px solid map-get($color, segundo);
         border-radius: 15px;
         &:focus{
-            color: white;
+            color: map-get($color, dark);
         }
     }
     textarea{
-        color: white;
+        color: map-get($color, dark);
         border: 1px solid map-get($color, segundo);
         border-radius: 15px;
         resize: none;
         &:focus{
-            color: white;
+            color: map-get($color, dark);
         }
     }
 }
@@ -41,7 +55,6 @@
     width: 90%;
     padding: 15px 15px;
     margin: 30px auto;
-    color: white;
 }
 #placeholder, #placeholder2, #placeholder3, #placeholder4, #placeholder5{
     position: absolute;
@@ -49,7 +62,7 @@
     left: 15%;
     width: auto;
     padding: 5px;
-    background-color: map-get($color, sexto);
+    background-color: map-get($color, light);
     color: map-get($color, segundo);
 }
 #placeholder2{
@@ -84,7 +97,7 @@
     label{
         display: inline-block;
         cursor: pointer;
-        color: white;
+        color: map-get($color, dark);
         position: relative;
         width: 100%;
         padding: 5px auto;
@@ -101,14 +114,14 @@
             padding: 10px 30px;
             width: 100%;
             border-radius: 10px;
-            color: white;
+            color: map-get($color, blanco);
         }
     }
     #terminado:checked + label{
-        background-color: map-get($color, septimo);
+        background-color: map-get($color, quinto);
     }
     #enProceso:checked + label{
-        background-color: map-get($color, octavo);
+        background-color: map-get($color, sexto);
     }
     #comenzar:checked + label{
         background-color: map-get($color, segundo);
@@ -141,7 +154,7 @@
             font-size: 1.6rem;
             margin: 0 20px 0 10px;
             padding-top: 10px;
-            color: white;
+            color: map-get($color, segundo);
             transition: color 1s ease;
             cursor: pointer;
             &:hover{
@@ -184,7 +197,7 @@
         margin: 0 15px 0 7.5px;
     }
     &:hover{
-        color: map-get($color, septimo);
+        color: map-get($color, quinto);
     }
 }
 .aparecer{
@@ -197,19 +210,31 @@
 //Crear
 
 .tarea__crear{
-    margin: 40px auto;
-    background-color: map-get($color, primero);
+    margin: 40px auto 20px;
+    width: 175px;
+    height: 60px;
+    background-color: map-get($color, blanco);
     border-radius: 50px;
-    padding: 1rem;
-    width: 4.5rem;
+    box-shadow:  6px 6px 14px #e7e9ed,
+                        -6px -6px 14px #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    -webkit-transition: transform 1s;
     transition: transform 1s;
     &:hover{
-        transform: scale(1.3);
+        transform: scale(1.1);
     }
     i{
-        font-size: 2.5rem;
-        color: white;
+        font-size: 1.5rem;
+        color: map-get($color, dark);
+        margin-right: 8px;
+    }
+    p{
+        color: map-get($color, dark);
+        font-size: map-get($size, normal);
+        font-weight: map-get( $weight , 500 );
+        margin: 0;
+        padding: 0;
     }
 }

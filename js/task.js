@@ -25,45 +25,56 @@ class Usuario{
     }
 }
 
+function obtenerUsuarioIngresado(){
+    return parseInt(localStorage.getItem("indiceUsuario"));
+}
+
 function crearTareas(){
-    document.querySelector(".bxs-message-square-add").addEventListener("click", () =>{
+    document.querySelector(".tarea__crear").addEventListener("click", () =>{
         let nuevoId = 1;
+        let usuarioIngresado = obtenerUsuarioIngresado();
         if(arrayTareas.length != 0){
             nuevoId = arrayTareas[0].id + 1;
         }
         arrayTareas.unshift(new Tarea( nuevoId , " ", "Terminado" ,   [ 1 , 2 , 3 ] , "6 ene" ,  "19 ene" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ));
+        arrayUsuarios[usuarioIngresado].tareas.push(nuevoId); // Ingresa tarea para poder 
         mostrarTareas();
         document.getElementById(nuevoId).click(); //Se realiza click en el boton apenas creado el evento para modificarlo 
     });
 }
+
 function mostrarUsuarios(){
-    let container = document.querySelector(".usuarios ul");
+    let container = document.querySelector(".usuarios div");
+    let usuarioIngresado = obtenerUsuarioIngresado();
     arrayUsuarios.forEach( usuario => {
-        container.innerHTML +=  `<li>
+        if( arrayUsuarios[ usuarioIngresado ].id != usuario.id ){
+        container.innerHTML +=  `<div class="usuarios--perfil" >
                                     <img src="../assets/profiles/${usuario.fotoSrc}">
                                     <article>
                                         <p class="usuario__perfil--nombre">${usuario.nombre}</p>
                                         <p class="usuario__perfil--rol">${usuario.rol}</p>
                                     </article>
-                                </li>`;
+                                </div>`;
+        }
     });
+}
+
+function mostrarUsuarioRegistrado(){
+    let perfil = document.querySelector(".menu__perfil img");
+    let usuarioIngresado = obtenerUsuarioIngresado();
+    perfil.src = "../assets/profiles/"+ arrayUsuarios[ usuarioIngresado ].fotoSrc;
+
+    let nombrePerfil = document.querySelector(".menu__usuario--nombre");
+    nombrePerfil.innerHTML = `${arrayUsuarios[usuarioIngresado].nombre}`;
 }
 
 function mostrarTareas(){
     let listaTareas = document.querySelector(".tarea__lista");
     listaTareas.innerHTML = " ";
-
-    let usuarioIngresado = "";
-
-    if( localStorage.getItem("recordar") == "true" ){
-        usuarioIngresado = parseInt(localStorage.getItem("indiceUsuario"));
-    }
-    else{
-        usuarioIngresado = parseInt(sessionStorage.getItem("indiceUsuario"));
-    }
+    let usuarioIngresado = obtenerUsuarioIngresado();
 
     arrayTareas.forEach( element => {
-
+        
         if( arrayUsuarios[ usuarioIngresado ].tareas.includes(element.id) ){
 
             //inicio if condicional que va a mostrar solo las tareas que coincidan con el usuario iniciado
@@ -93,7 +104,7 @@ function mostrarTareas(){
                                             </div>
                                             <div class="tarea__fecha">
                                                 <div class="tarea__fecha--valor">
-                                                    ${element.inicio}  -  ${element.fin}
+                                                    ${element.fin}
                                                 </div>
                                             </div>
                                             <div class="tarea__prioridad">
@@ -288,53 +299,48 @@ arrayUsuarios.unshift(new Usuario( 4 , "Diana",     "contraseña" , "Tutora" ,  
 arrayUsuarios.unshift(new Usuario( 5 , "Mariano",   "contraseña" , "Coordinador", "13.png" , [ 5 , 6 , 7 ]  ));
 arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,     "7.png" ,  [ 6 , 7 , 8 ]  ));
 
-function generarIndiceRegistrado( storage ){
-
-    let indexUsuarioRegistrado = arrayUsuarios.findIndex( usuario => {
-        return usuario.nombre == storage.getItem("usuario") 
-    });
-    storage.setItem("indiceUsuario", indexUsuarioRegistrado);
-}
-
-function removerItems( storage ){ // Elimina el storage correspondiente a donde se encuentran los datos
-    storage.removeItem("usuario");
-    storage.removeItem("contraseña");
-    storage.removeItem("indiceUsuario");
-    localStorage.removeItem("recordar");
-}
-
 function cerrarSesion(){
     let cerrar = document.getElementById("cerrarSesion");
     cerrar.addEventListener("click", () => {
-        if( localStorage.getItem("recordar") == "false" ){
-            removerItems( sessionStorage );
-            window.location.assign("../index.html");
-        }
-        else{
-            removerItems( localStorage );
-            window.location.assign("../index.html");
-        }
+        localStorage.clear();
+        window.location.assign("../index.html");
     });
 }
 
-window.onload = () => {
+function generarIndiceRegistrado(){
+    // Trae el indice del usuario ingresado y lo guarda en el Local Storage
+    let indexUsuarioRegistrado = arrayUsuarios.findIndex( usuario => {
+        return usuario.nombre == localStorage.getItem("usuario") 
+    });
+    localStorage.setItem("indiceUsuario", indexUsuarioRegistrado);
+}
 
-    if( localStorage.getItem("recordar") == "false" ){
-        // Se eliminan los valores dentro del localStorage menos del "recordar", luego se setea en sessionStorage el indice del usuario que ingresó
-        sessionStorage.setItem("usuario", localStorage.getItem("usuario") );
-        sessionStorage.setItem("contraseña", localStorage.getItem("contraseña") );
-        localStorage.removeItem("usuario");
-        localStorage.removeItem("contraseña");
-        generarIndiceRegistrado( sessionStorage );
+window.onload = () => {
+    
+    if( localStorage.getItem("recordar") == "true" ){
+        // Se setea en localStorage el indice del usuario que ingresó
+        generarIndiceRegistrado();
+    }
+    else if( localStorage.getItem("recordar") == "false" ){
+        generarIndiceRegistrado();
+
+        //window.onhashchange = () => {
+        //    localStorage.clear();
+        //    alert("Se volvio para atras");
+        //};
     }
     else{
-        // Se setea en localStorage el indice del usuario que ingresó
-        generarIndiceRegistrado( localStorage );
+        alert("Oops.. debe volver a iniciar sesión");
+        window.location.assign("../index.html");
     }
+    
 
     cerrarSesion();
     crearTareas();
     mostrarTareas();
     mostrarUsuarios();
+    mostrarUsuarioRegistrado();
+    // deberian ir en el if & else if..
+
 
 };
