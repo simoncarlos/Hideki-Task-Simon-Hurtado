@@ -1,39 +1,68 @@
 body{
     height: 100vh;
     display: grid;
-    grid-template-columns: 7% 93%;
-    grid-template-rows: 1fr;
-    grid-template-areas: "menues    contenido";
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vh;
+    grid-template-areas: "contenido";
 }
 .menu{
-    grid-area: menues;
-    width: 100%;
-    box-shadow:  6px 6px 14px #e7e9ed,
-                -6px -6px 14px #ffffff;
+    display: none;
 }
 .contenido{
     grid-area: contenido;
-}
-.contenido{
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 78% 20%;
-    grid-template-rows: 30% 46% 20%;
-    grid-template-areas:"calendario  calendario    "
-                        "tareas      usuarios      "
-                        "tareas      notificaciones";
-    background-color: map-get($color, light);
-    gap: 2%;
-}
-.calendario{
-    grid-area: calendario;
-    background-color: map-get($color, blanco);
+    height: 100vh;
     width: 100%;
-    border-radius: 20px;
+    padding: 2%;
+    background-color: map-get($color, light);
+}
+.dashboard{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    &__calendario{
+        
+        width: 100%;
+        border-radius: 50px;
+        height: 40%;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .dashboard__estadisticas{
+            height: 100%;
+            width: 70%;
+            background-color: map-get($color, blanco);
+            border-radius: 50px;
+        }
+        .dashboard__notificaciones{
+            height: 100%;
+            width: 26%;
+            background-color: map-get($color, blanco);
+            border-radius: 50px;
+        }
+    }
+    &__cuerpo{
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 7px; 
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: map-get($color, segundo);
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: map-get($color, segundo);
+        }
+    }
 }
 .tareas{
-    margin-top: 50px;
-    grid-area: tareas;
     width: 100%;
     overflow-y: auto;
     background-color: map-get($color, light);
@@ -53,66 +82,66 @@ body{
         background: map-get($color, primero);
     }
 }
-.usuarios{
-    grid-area: usuarios;
-    color: map-get($color, dark);
-    width: 100%;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-        width: 7px; 
-        height: 8px;  
-    }
-    &::-webkit-scrollbar-track {
-        background: map-get($color, light); 
-        border-radius: 4px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background: map-get($color, primero);
-        border-radius: 4px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: map-get($color, primero);
-    }
-    div{
-        width: 100%;
-        height: auto;
-        margin: 0;
-        padding: 5%;
-        .usuarios--perfil{
-            display: flex;
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            align-items: center;
-            background-color: map-get($color, blanco);
-            border-radius: 10px;
-            box-shadow:  6px 6px 14px #e7e9ed,
-                        -6px -6px 14px #ffffff;
-            img{
-                width: 3rem;
-                height: 3rem;
-            }
-            article{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                width: 100%;
-                padding: 10px 0 0 10px;
-                .usuario__perfil--nombre{
-                    font-size: map-get($size, normal);
-                    padding: 0;
-                    margin: 0;
-                }
-                .usuario__perfil--rol{
-                    font-size: map-get($size, sm);
-                    padding: 0;
-                    margin: 0;
-                }
-            }
-        }  
-    }
-}
-.notificaciones{
-    grid-area: notificaciones;
-    width: 100%;
-}
+//.usuarios{
+//    grid-area: usuarios;
+//    color: map-get($color, dark);
+//    width: 100%;
+//    overflow-y: auto;
+//    &::-webkit-scrollbar {
+//        width: 7px; 
+//        height: 8px;  
+//    }
+//    &::-webkit-scrollbar-track {
+//        background: map-get($color, light); 
+//        border-radius: 4px;
+//    }
+//    &::-webkit-scrollbar-thumb {
+//        background: map-get($color, primero);
+//        border-radius: 4px;
+//    }
+//    &::-webkit-scrollbar-thumb:hover {
+//        background: map-get($color, primero);
+//    }
+//    div{
+//        width: 100%;
+//        height: auto;
+//        margin: 0;
+//        padding: 5%;
+//        .usuarios--perfil{
+//            display: flex;
+//            margin: 10px 0;
+//            padding: 10px;
+//            width: 100%;
+//            align-items: center;
+//            background-color: map-get($color, blanco);
+//            border-radius: 10px;
+//            box-shadow:  6px 6px 14px #e7e9ed,
+//                        -6px -6px 14px #ffffff;
+//            img{
+//                width: 3rem;
+//                height: 3rem;
+//            }
+//            article{
+//                display: flex;
+//                flex-direction: column;
+//                justify-content: center;
+//                width: 100%;
+//                padding: 10px 0 0 10px;
+//                .usuario__perfil--nombre{
+//                    font-size: map-get($size, normal);
+//                    padding: 0;
+//                    margin: 0;
+//                }
+//                .usuario__perfil--rol{
+//                    font-size: map-get($size, sm);
+//                    padding: 0;
+//                    margin: 0;
+//                }
+//            }
+//        }  
+//    }
+//}
+//.notificaciones{
+//    grid-area: notificaciones;
+//    width: 100%;
+//}

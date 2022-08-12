@@ -1,6 +1,6 @@
 .tarea__lista{
     width: 100%;
-    padding: 0 2%;
+    padding: 0;
 }
 .tarea__estado--valor{
     height: 1.5rem;
@@ -146,7 +146,7 @@
     width: 100%;
     padding: 0 2%;
     color: map-get($color, dark);
-    display: flex;
+    display: none;
     align-items: center;
     > * {
     text-align: center;
@@ -173,6 +173,7 @@
     }
 }
 .tarea__interlineado{
+    display: none;
     content: "";
     margin: 10px auto 20px;
     width: 93%;

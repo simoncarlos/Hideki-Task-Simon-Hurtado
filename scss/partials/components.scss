@@ -1,0 +1,76 @@
+.tareas__operaciones{
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+// Boton crear tarea
+.tarea__crear{
+    width: 175px;
+    height: 60px;
+    background-color: map-get($color, blanco);
+    border-radius: 50px;
+    box-shadow:  6px 6px 14px #e7e9ed,
+                        -6px -6px 14px #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 1s;
+    &:hover{
+        transform: scale(1.1);
+    }
+    i{
+        font-size: 1.5rem;
+        color: map-get($color, dark);
+        margin-right: 8px;
+    }
+    p{
+        color: map-get($color, dark);
+        font-size: map-get($size, normal);
+        font-weight: map-get( $weight , 500 );
+        margin: 0;
+        padding: 0;
+    }
+}
+
+// Filtro tareas
+
+.tareas__buscar{
+    height: auto;
+    //.bx-search-alt{
+    //    color: map-get($color, primero);
+    //    font-size: 1.5rem;
+    //    position: relative;
+    //    top: 85%;
+    //    left: -50%;
+    //    //transition: all 2s ease;
+    //}
+    input{
+        border-radius: 50px;
+        border: 1px solid map-get($color, blanco);
+        padding-left: 45px;
+        width: 200px;
+        height: 40px;
+        //transition: all 2s ease;
+        &:focus{
+            outline: 0 none;
+            border: 1px solid map-get($color, primero);
+            //width: 200px;
+        }
+        //&:focus ~ i {
+        //    left: -85%;
+        //}
+        &::placeholder{
+            color: map-get($color, primero);
+        }
+    }
+}
+// popup Agregar participantes
+
+.tarea__popup--participantes{
+    
+}

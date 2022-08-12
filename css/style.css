@@ -15,36 +15,59 @@ ul li {
 body {
   height: 100vh;
   display: grid;
-  grid-template-columns: 7% 93%;
-  grid-template-rows: 1fr;
-  grid-template-areas: "menues    contenido"; }
+  grid-template-columns: 100vw;
+  grid-template-rows: 100vh;
+  grid-template-areas: "contenido"; }
 
 .menu {
-  grid-area: menues;
-  width: 100%;
-  box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff; }
+  display: none; }
 
 .contenido {
-  grid-area: contenido; }
-
-.contenido {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 78% 20%;
-  grid-template-rows: 30% 46% 20%;
-  grid-template-areas: "calendario  calendario    " "tareas      usuarios      " "tareas      notificaciones";
-  background-color: #f6f8fc;
-  gap: 2%; }
-
-.calendario {
-  grid-area: calendario;
-  background-color: white;
+  grid-area: contenido;
+  height: 100vh;
   width: 100%;
-  border-radius: 20px; }
+  padding: 2%;
+  background-color: #f6f8fc; }
+
+.dashboard {
+  width: 100%;
+  height: 100%;
+  margin: 0; }
+  .dashboard__calendario {
+    width: 100%;
+    border-radius: 50px;
+    height: 40%;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .dashboard__calendario .dashboard__estadisticas {
+      height: 100%;
+      width: 70%;
+      background-color: white;
+      border-radius: 50px; }
+    .dashboard__calendario .dashboard__notificaciones {
+      height: 100%;
+      width: 26%;
+      background-color: white;
+      border-radius: 50px; }
+  .dashboard__cuerpo {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow-y: auto; }
+    .dashboard__cuerpo::-webkit-scrollbar {
+      width: 7px;
+      height: 8px; }
+    .dashboard__cuerpo::-webkit-scrollbar-track {
+      border-radius: 4px; }
+    .dashboard__cuerpo::-webkit-scrollbar-thumb {
+      background: #e43397;
+      border-radius: 4px; }
+    .dashboard__cuerpo::-webkit-scrollbar-thumb:hover {
+      background: #e43397; }
 
 .tareas {
-  margin-top: 50px;
-  grid-area: tareas;
   width: 100%;
   overflow-y: auto;
   background-color: #f6f8fc; }
@@ -60,148 +83,55 @@ body {
   .tareas::-webkit-scrollbar-thumb:hover {
     background: #00C4CC; }
 
-.usuarios {
-  grid-area: usuarios;
-  color: #272638;
+.tareas__operaciones {
   width: 100%;
-  overflow-y: auto; }
-  .usuarios::-webkit-scrollbar {
-    width: 7px;
-    height: 8px; }
-  .usuarios::-webkit-scrollbar-track {
-    background: #f6f8fc;
-    border-radius: 4px; }
-  .usuarios::-webkit-scrollbar-thumb {
-    background: #00C4CC;
-    border-radius: 4px; }
-  .usuarios::-webkit-scrollbar-thumb:hover {
-    background: #00C4CC; }
-  .usuarios div {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 5%; }
-    .usuarios div .usuarios--perfil {
-      display: flex;
-      margin: 10px 0;
-      padding: 10px;
-      width: 100%;
-      align-items: center;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff; }
-      .usuarios div .usuarios--perfil img {
-        width: 3rem;
-        height: 3rem; }
-      .usuarios div .usuarios--perfil article {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        padding: 10px 0 0 10px; }
-        .usuarios div .usuarios--perfil article .usuario__perfil--nombre {
-          font-size: 14px;
-          padding: 0;
-          margin: 0; }
-        .usuarios div .usuarios--perfil article .usuario__perfil--rol {
-          font-size: 12.25px;
-          padding: 0;
-          margin: 0; }
-
-.notificaciones {
-  grid-area: notificaciones;
-  width: 100%; }
-
-.menu {
-  color: white;
-  padding: 50% 15%;
+  margin: 15px 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between; }
-  .menu__decoration {
-    display: flex;
-    align-items: center; }
-    .menu__decoration span {
-      width: 7px;
-      height: 7px;
-      border-radius: 50px;
-      margin-left: 4px; }
-      .menu__decoration span:nth-child(0n+1) {
-        background-color: #ff5f56; }
-      .menu__decoration span:nth-child(0n+2) {
-        background-color: #ffbd2e; }
-      .menu__decoration span:nth-child(0n+3) {
-        background-color: #27c93f; }
-  .menu__logo {
-    width: 100%;
-    margin-top: 10px; }
-    .menu__logo img {
-      width: 100%;
-      margin: 0;
-      padding: 0; }
-    .menu__logo p {
-      font-size: 14px;
-      color: #fd1f4a; }
-  .menu__perfil {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-    .menu__perfil div {
-      width: 2.7rem;
-      height: 2.7rem;
-      background-color: rgba(146, 146, 146, 0.082);
-      border-radius: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center; }
-      .menu__perfil div img {
-        width: 2.7rem;
-        height: 2.7rem;
-        border-radius: 50px; }
-    .menu__perfil .menu__usuario--nombre {
-      font-size: 12.25px;
-      color: #272638;
-      margin-top: 10px; }
-    .menu__perfil article {
-      height: 3 rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      margin-left: 10px; }
-      .menu__perfil article p {
-        height: auto;
-        padding: 0;
-        margin: 0;
-        line-height: normal; }
-  .menu__usuario {
-    font-size: 14px; }
-  .menu__rol {
-    font-size: 12.25px; }
-  .menu__opciones {
-    width: 100%;
-    height: 100%;
-    padding-top: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.tarea__crear {
+  width: 175px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 1s; }
+  .tarea__crear:hover {
+    transform: scale(1.1); }
+  .tarea__crear i {
+    font-size: 1.5rem;
+    color: #272638;
+    margin-right: 8px; }
+  .tarea__crear p {
+    color: #272638;
     font-size: 14px;
-    color: #272638; }
-    .menu__opciones i {
-      font-size: 25px;
-      color: #272638;
-      cursor: pointer;
-      margin-bottom: 30px;
-      transition: all 1s ease; }
-      .menu__opciones i:hover {
-        color: #e43397; }
+    font-weight: 500;
+    margin: 0;
+    padding: 0; }
+
+.tareas__buscar {
+  height: auto; }
+  .tareas__buscar input {
+    border-radius: 50px;
+    border: 1px solid white;
+    padding-left: 45px;
+    width: 200px;
+    height: 40px; }
+    .tareas__buscar input:focus {
+      outline: 0 none;
+      border: 1px solid #00C4CC; }
+    .tareas__buscar input::placeholder {
+      color: #00C4CC; }
 
 .tarea__lista {
   width: 100%;
-  padding: 0 2%; }
+  padding: 0; }
 
 .tarea__estado--valor, .tarea__prioridad--valor {
   height: 1.5rem;
@@ -327,7 +257,7 @@ body {
   width: 100%;
   padding: 0 2%;
   color: #272638;
-  display: flex;
+  display: none;
   align-items: center; }
   .tareas__categorias > * {
     text-align: center;
@@ -347,6 +277,7 @@ body {
     width: 10%; }
 
 .tarea__interlineado {
+  display: none;
   content: "";
   margin: 10px auto 20px;
   width: 93%;
@@ -511,50 +442,165 @@ body {
         margin: 0; }
 
 .tarea__añadir--colaboradores {
+  margin-left: 10%;
   margin-top: 30px;
   display: flex;
   align-items: center;
   font-size: 14px;
   cursor: pointer;
-  transition: all 1s ease; }
+  transition: all 1s ease;
+  text-decoration: none;
+  color: #272638; }
   .tarea__añadir--colaboradores i {
     font-size: 1.5rem;
     margin: 0 15px 0 7.5px; }
   .tarea__añadir--colaboradores:hover {
     color: #04ba71; }
 
-.aparecer {
-  display: block; }
-
-.desaparecer {
-  display: none; }
-
-.tarea__crear {
-  margin: 40px auto 20px;
-  width: 175px;
-  height: 60px;
-  background-color: white;
-  border-radius: 50px;
-  box-shadow: 6px 6px 14px #e7e9ed, -6px -6px 14px #ffffff;
+.tarea__lista--añadir {
+  padding: 5%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 1s; }
-  .tarea__crear:hover {
-    transform: scale(1.1); }
-  .tarea__crear i {
-    font-size: 1.5rem;
-    color: #272638;
-    margin-right: 8px; }
-  .tarea__crear p {
-    color: #272638;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+
+.tarea__añadir {
+  height: auto;
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0;
+  cursor: pointer; }
+  .tarea__añadir--perfil {
+    background-color: #f6f8fc;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50px; }
+    .tarea__añadir--perfil img {
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50px; }
+  .tarea__añadir article {
+    display: block; }
+  .tarea__añadir--nombre {
     font-size: 14px;
-    font-weight: 500;
+    line-height: normal;
+    padding: 0;
     margin: 0;
-    padding: 0; }
+    text-align: left; }
+  .tarea__añadir--rol {
+    font-size: 12.25px;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    text-align: left; }
 
 @media screen and (min-width: 600px) {
+  body {
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas: "menues  contenido"; }
+  .menu {
+    grid-area: menues;
+    width: 100%; }
+  .menu {
+    height: auto;
+    color: white;
+    padding: 50% 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between; }
+    .menu__decoration {
+      display: flex;
+      align-items: center; }
+      .menu__decoration span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50px;
+        margin-left: 4px; }
+        .menu__decoration span:nth-child(0n+1) {
+          background-color: #ff5f56; }
+        .menu__decoration span:nth-child(0n+2) {
+          background-color: #ffbd2e; }
+        .menu__decoration span:nth-child(0n+3) {
+          background-color: #27c93f; }
+    .menu__logo {
+      width: 100%;
+      margin-top: 10px; }
+      .menu__logo img {
+        width: 100%;
+        margin: 0;
+        padding: 0; }
+      .menu__logo p {
+        font-size: 14px;
+        color: #fd1f4a; }
+    .menu__perfil {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .menu__perfil div {
+        width: 2.7rem;
+        height: 2.7rem;
+        background-color: rgba(146, 146, 146, 0.082);
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        .menu__perfil div img {
+          width: 2.7rem;
+          height: 2.7rem;
+          border-radius: 50px; }
+      .menu__perfil .menu__usuario--nombre {
+        font-size: 12.25px;
+        color: #272638;
+        margin-top: 10px; }
+      .menu__perfil article {
+        height: 3 rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-left: 10px; }
+        .menu__perfil article p {
+          height: auto;
+          padding: 0;
+          margin: 0;
+          line-height: normal; }
+    .menu__usuario {
+      font-size: 14px; }
+    .menu__rol {
+      font-size: 12.25px; }
+    .menu__opciones {
+      width: 100%;
+      padding-top: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      flex-direction: column;
+      font-size: 14px;
+      color: #272638; }
+      .menu__opciones i {
+        font-size: 25px;
+        color: #272638;
+        cursor: pointer;
+        margin-bottom: 30px;
+        transition: all 1s ease; }
+        .menu__opciones i:hover {
+          color: #e43397; }
+  .contenido {
+    padding: 2% 5%; }
+  .dashboard {
+    height: 100%;
+    width: 100%; }
+  .tareas__operaciones {
+    padding: 10px 0;
+    flex-direction: row; }
+    .tareas__operaciones > * {
+      margin: 0 20px; }
   .tarea__item {
     margin: 10px auto;
     width: 100%;
@@ -571,6 +617,10 @@ body {
     width: 540px; } }
 
 @media screen and (min-width: 992px) {
+  .tareas__categorias {
+    display: flex; }
+  .tarea__interlineado {
+    display: block; }
   .tarea__item {
     margin: 10px auto;
     height: 42.5px;

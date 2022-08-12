@@ -186,12 +186,15 @@
     }
 }
 .tarea__añadir--colaboradores{
+    margin-left: 10%;
     margin-top: 30px;
     display: flex;
     align-items: center;
     font-size: map-get($size, normal);
     cursor: pointer;
     transition: all 1s ease;
+    text-decoration: none;
+    color: map-get($color, dark);
     i{
         font-size: 1.5rem;
         margin: 0 15px 0 7.5px;
@@ -200,41 +203,48 @@
         color: map-get($color, quinto);
     }
 }
-.aparecer{
-    display: block;
-}
-.desaparecer{
-    display: none;
-}
-
-//Crear
-
-.tarea__crear{
-    margin: 40px auto 20px;
-    width: 175px;
-    height: 60px;
-    background-color: map-get($color, blanco);
-    border-radius: 50px;
-    box-shadow:  6px 6px 14px #e7e9ed,
-                        -6px -6px 14px #ffffff;
+.tarea__lista--añadir{
+    padding: 5%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.tarea__añadir{
+    height: auto;
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0;
     cursor: pointer;
-    transition: transform 1s;
-    &:hover{
-        transform: scale(1.1);
+    &--perfil{
+        background-color: map-get($color, light);
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50px;
+        img{
+            height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50px;
+        }
     }
-    i{
-        font-size: 1.5rem;
-        color: map-get($color, dark);
-        margin-right: 8px;
+    article{
+        display: block;
     }
-    p{
-        color: map-get($color, dark);
+    &--nombre{
         font-size: map-get($size, normal);
-        font-weight: map-get( $weight , 500 );
-        margin: 0;
+        line-height: normal;
         padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+    &--rol{
+        font-size: map-get($size, sm);
+        line-height: normal;
+        padding: 0;
+        margin: 0;
+        text-align: left;
     }
 }

@@ -46,7 +46,6 @@ function guardarEnStorage (user, contraseña, storage){
     localStorage.setItem("usuario", user);
     localStorage.setItem("contraseña", contraseña);
     localStorage.setItem("recordar", storage);
-
 }
 
 function verificarUsuario(user, password, recordar){
@@ -112,4 +111,7 @@ function añadirEventoSesion(){
 
 window.onload = () => {
     añadirEventoSesion();
+    if( localStorage.getItem("recordar") == "false" ){
+        localStorage.clear();
+    }
 };
