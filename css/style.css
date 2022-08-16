@@ -497,6 +497,22 @@ body {
     margin: 0;
     text-align: left; }
 
+.modal__modificar {
+  width: 100%;
+  height: auto;
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; }
+
+.modal__guardar, .modal__cancelar {
+  text-decoration: none;
+  font-size: 14px;
+  color: #e43397;
+  padding: 10px 20px;
+  border-radius: 40px;
+  border: 1px solid #e43397; }
+
 @media screen and (min-width: 600px) {
   body {
     grid-template-columns: 70px 1fr;

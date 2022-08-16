@@ -1,7 +1,6 @@
 {
   "name": "proyecto-final",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass --include-path scss scss/style.scss css/style.css",
@@ -13,5 +12,14 @@
   "devDependencies": {
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado/issues"
+  },
+  "homepage": "https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado#readme",
+  "description": ""
 }

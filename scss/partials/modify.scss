@@ -248,3 +248,20 @@
         text-align: left;
     }
 }
+
+.modal__modificar{
+    width: 100%;
+    height: auto;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.modal__guardar, .modal__cancelar{
+    text-decoration: none;
+    font-size: map-get($size, normal);
+    color: map-get($color, segundo);
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 1px solid map-get($color, segundo);
+}
