@@ -25,14 +25,14 @@ class Usuario{
     }
 }
 
-arrayTareas.unshift(new Tarea( 1 , "Responsive Design", "Terminado" ,  "1/11/2022",    "19 ene" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ,   [1 , 2 , 3 , 6]     ));
-arrayTareas.unshift(new Tarea( 2 , "Web Development",   "En proceso" , "4/11/2022"  ,   "13 feb" ,  "Alto" ,  "Aprobar entrega de interactuar con HTML de javascript" ,  [2 , 3 , 4 ]        ));
-arrayTareas.unshift(new Tarea( 3 , "Databases",         "Comenzar" ,   "10/11/2022"  ,   "1 mar" ,   "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" , [3 , 5 ]            ));
-arrayTareas.unshift(new Tarea( 4 , "Final Proyect",     "En proceso" , "6/11/2022" ,    "19 may" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ,  [4 , 5 , 6 ]        ));
-arrayTareas.unshift(new Tarea( 5 , "Wireframes",        "Terminado" ,  "26/11/2022"  ,   "5 jun" ,   "Medio" , "Aprobar entrega de interactuar con HTML de javascript" , [5 , 1 , 2, 3 ]     ));
-arrayTareas.unshift(new Tarea( 6 , "Entrevistas",       "En proceso" , "20/11/2022"  ,   "5 jul" ,   "Alto" ,  "Aprobar entrega de interactuar con HTML de javascript" , [6 , 3 , 2 , 5 ]    ));
-arrayTareas.unshift(new Tarea( 7 , "Benchmarking",      "Comenzar" ,   "24/11/2022" ,    "3 agos" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" , [1 , 2 , 3 , 5]     ));
-arrayTareas.unshift(new Tarea( 8 , "POV + MVP",         "En proceso" , "9/11/2022"  ,  "23 sep" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" ,   [2 , 3 , 4 ]        ));
+arrayTareas.unshift(new Tarea( 1 , "Responsive Design", "Terminado" ,  "1/11/2022",    "2022-08-04" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ,   [1 , 2 , 3 , 6]     ));
+arrayTareas.unshift(new Tarea( 2 , "Web Development",   "En proceso" , "4/11/2022"  ,   "2022-08-04" ,  "Alto" ,  "Aprobar entrega de interactuar con HTML de javascript" ,  [2 , 3 , 4 ]        ));
+arrayTareas.unshift(new Tarea( 3 , "Databases",         "Comenzar" ,   "10/11/2022"  ,   "2022-08-04" ,   "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" , [3 , 5 ]            ));
+arrayTareas.unshift(new Tarea( 4 , "Final Proyect",     "En proceso" , "6/11/2022" ,    "2022-08-04" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ,  [4 , 5 , 6 ]        ));
+arrayTareas.unshift(new Tarea( 5 , "Wireframes",        "Terminado" ,  "26/11/2022"  ,   "2022-08-04" ,   "Medio" , "Aprobar entrega de interactuar con HTML de javascript" , [5 , 1 , 2, 3 ]     ));
+arrayTareas.unshift(new Tarea( 6 , "Entrevistas",       "En proceso" , "20/11/2022"  ,   "2022-08-04" ,   "Alto" ,  "Aprobar entrega de interactuar con HTML de javascript" , [6 , 3 , 2 , 5 ]    ));
+arrayTareas.unshift(new Tarea( 7 , "Benchmarking",      "Comenzar" ,   "24/11/2022" ,    "2022-08-04" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" , [1 , 2 , 3 , 5]     ));
+arrayTareas.unshift(new Tarea( 8 , "POV + MVP",         "En proceso" , "9/11/2022"  ,  "2022-08-04" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" ,   [2 , 3 , 4 ]        ));
 
 arrayUsuarios.unshift(new Usuario( 1 , "Solange",   "contraseña" , "Tutora" ,     "1.png" ,  [ 1 , 7 , 5 ]            ));
 arrayUsuarios.unshift(new Usuario( 2 , "Florencia", "contraseña" , "Profesora",   "18.png" , [ 2 , 8 , 1, 5, 6, 7 ]   ));
@@ -40,6 +40,9 @@ arrayUsuarios.unshift(new Usuario( 3 , "Marco",     "contraseña" , "Tutor" ,   
 arrayUsuarios.unshift(new Usuario( 4 , "Diana",     "contraseña" , "Tutora" ,     "19.png" , [ 4 , 2, 8 ]             ));
 arrayUsuarios.unshift(new Usuario( 5 , "Mariano",   "contraseña" , "Coordinador", "13.png" , [ 5 , 3, 4, 6, 7 ]       ));
 arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,     "7.png" ,  [ 6 , 1, 4 ]             ));
+
+let graficoLinea;
+let graficoDonut;
 
 // funciones para mostrar tareas
 
@@ -80,6 +83,7 @@ function mostrarTareas(){
     });
     eliminarTareas();
     modificarTareas();
+    actualizarGraficos();
 }
 
 function obtenerIndiceTarea( idTarea ){
@@ -104,17 +108,40 @@ function eliminarTareas(){
     document.querySelectorAll(".bx-trash-alt").forEach( botonEliminar => {
 
         botonEliminar.addEventListener("click", (nodoBotonEliminar) =>{
+            confirmarEliminarTarea(nodoBotonEliminar);
+        });
 
+    });
+
+}
+
+function confirmarEliminarTarea( nodoBotonEliminar ){
+    Swal.fire({
+        title: '¿Está seguro que desea eliminar?',
+        text: "Una vez borrada la tarea no se puede revertir!",
+        icon: 'warning',
+        iconColor: '#fbbd0d',
+        showCancelButton: true,
+        confirmButtonColor: '#04ba71',
+        cancelButtonColor: '#fd1f4a',
+        cancelButtonText: "Cancelar",
+        confirmButtonText: 'Si, borrar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
             let idBotonEliminar = nodoBotonEliminar.target.id.replace(/[^0-9]+/g, "");
             let borrarPosicion = obtenerIndiceTarea( idBotonEliminar );
             arrayTareas.splice( borrarPosicion , 1 );
             eliminarTareaDeUsuarios(idBotonEliminar);
             mostrarTareas();
-
-        });
-
+            Swal.fire({
+                title: '¡Tarea Eliminada!',
+                text: 'Su tarea ha sido eliminada con exito.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1800
+            })
+        }
     });
-
 }
 
 function eliminarTareaDeUsuarios( idBotonEliminar ){
@@ -141,9 +168,10 @@ function crearTareas(){
 
         let nuevoId = 1;
         (arrayTareas.length != 0) && ( nuevoId = arrayTareas[0].id + 1 );
-        arrayTareas.unshift(new Tarea( nuevoId , "Nueva tarea..", "Terminado" , "23/11/2022" ,  "19 ene" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript", [ arrayUsuarios[obtenerUsuarioIngresado()].id ] ));
+        arrayTareas.unshift(new Tarea( nuevoId , "", "Terminado" , "23/11/2022" ,  "19 ene" ,  "Medio" , "", [ arrayUsuarios[obtenerUsuarioIngresado()].id ] ));
         arrayUsuarios[ obtenerUsuarioIngresado() ].tareas.unshift(nuevoId);
         mostrarTareas(); 
+        document.getElementById("editar"+nuevoId).click()
     });
 }
 
@@ -159,7 +187,7 @@ function modificarTareas(){
         botonEditar.addEventListener('click', nodobotonEditar =>{ 
             //se busca la posicion de la tarea que tenga un id coincidente con el id del .bx-edit para insertar las propiedades del objeto.
             let indiceTarea = obtenerIndiceTarea( nodobotonEditar.target.id.replace(/[^0-9]+/g, "") );
-            let { nombre, estado , prioridad, descripcion, usuarios} = arrayTareas[indiceTarea];
+            let { nombre, estado, fin, prioridad, descripcion, usuarios} = arrayTareas[indiceTarea];
             contenedorTarea.innerHTML = " ";
             contenedorTarea.innerHTML += `<div class="tarea__modificar">  
                                             <i class='bx bx-x-circle' data-bs-dismiss="modal"></i>
@@ -192,13 +220,19 @@ function modificarTareas(){
                                                 <input type="radio" name="prioridad" id="baja">
                                                 <label for="baja">Bajo</label>
                                             </div>
+
+                                            <div class="tarea__calendario">
+                                                <p id="placeholder5">Fecha Finalizacion</p>
+                                                <input type="date" value="${fin}">
+                                            </div>
+
                                             <div class="tarea__participantes">
-                                                <p id="placeholder5">Colaboradores</p>
+                                                <p id="placeholder6">Colaboradores</p>
                                                 <ul class="tarea__modificar--profiles">
                                                 </ul>
                                             </div>
                                             <div class="modal__modificar">
-                                                <button id="guardazo" class="modal__guardar">Guardar Cambios</button>
+                                                <button id="salvarCambios" class="modal__guardar">Guardar Cambios</button>
                                                 <button class="modal__cancelar" data-bs-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>`;            
@@ -219,12 +253,12 @@ function modificarTareas(){
             document.querySelector(".tarea__modificar--profiles").innerHTML += `<a class="tarea__añadir--colaboradores"><i class='bx bx-user-plus' ></i> Añadir colaboradores</a>`;
             
             // Segun el valor del estado de la tarea, se va a mostrar como checked el que coincida con el del array de las tareas
-
-            ( estado == "Terminado" ) ? ( document.getElementById("terminado").checked = true ) : ( ( estado == "En proceso" ) ? ( document.getElementById("enProceso").checked = true ) : ( document.getElementById("comenzar").checked = true ) );
-            ( prioridad == "Alto" ) ? ( document.getElementById("alta").checked = true ) : ( ( prioridad == "Medio" ) ? ( document.getElementById("media").checked = true ) : ( document.getElementById("baja").checked = true ) );
+            
+            ( estado == "Terminado" ) ? ( document.getElementById("terminado").click() ) : ( ( estado == "En proceso" ) ? ( document.getElementById("enProceso").click() ) : ( document.getElementById("comenzar").click() ) );
+            ( prioridad == "Alto" )   ? ( document.getElementById("alta").checked = true )      : ( ( prioridad == "Medio" )   ? ( document.getElementById("media").checked = true )     : ( document.getElementById("baja").checked = true ) );
             
             //Escucha de eventos
-            document.getElementById("guardazo").onclick = () => { verificarModificacion( indiceTarea ) };
+            document.getElementById("salvarCambios").onclick = () => { verificarModificacion( indiceTarea ) };
 
         });
     });
@@ -234,22 +268,43 @@ function verificarModificacion( indiceTarea ){
 
     let nombreIngresado = document.querySelector(".tarea__modificar--nombre"); 
     let descripcionIngresada = document.querySelector(".tarea__modificar--descripcion");
-
-    if( ( nombreIngresado.value.length != 0 ) && (descripcionIngresada.value.length != 0 ) ){
-        guardarCambios( nombreIngresado.value, descripcionIngresada.value, indiceTarea );
+    let fechaIngresada = document.querySelector(".tarea__calendario input");
+    if( ( nombreIngresado.value.length != 0 ) && ( descripcionIngresada.value.length != 0 ) && ( fechaIngresada.value.length != 0 ) ){
+        guardarCambios( nombreIngresado.value, descripcionIngresada.value, fechaIngresada.value, indiceTarea );
         mostrarTareas();
         document.querySelector(".bx-x-circle").click();
+        Swal.fire({
+            title: '¡Cambios Guardados!',
+            text: 'Su tareas han sido guardadas y actializadas con exito.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1800
+        })
+    }
+    else{
+        Toastify({
+            text: "¡Debe completar todos los campos!",
+            duration: 3000,
+            newWindow: true,
+            gravity: "top",
+            position: "right", 
+            stopOnFocus: true, 
+            style: {
+                background: "#fd1f4a",
+            },
+            onClick: function(){}
+        }).showToast();
     }
 
 }
 
-function guardarCambios( nombreIngresado, descripcionIngresada, indiceTarea  ){
+function guardarCambios( nombreIngresado, descripcionIngresada,  fechaIngresada, indiceTarea  ){
 
     arrayTareas[ indiceTarea ].nombre = nombreIngresado;
     arrayTareas[ indiceTarea ].descripcion = descripcionIngresada;
-
+    arrayTareas[ indiceTarea ].fin = fechaIngresada.toLocaleString();
     document.querySelectorAll('input[type=radio][name="estado"]').forEach( option => { 
-        (option.checked) && ( arrayTareas[ indiceTarea ].estado = (option.id == "terminado") ? ( "Terminado" ) : ( (option.id == "enProceso") ? ( "En Proceso" ) : ("Comenzar") ) )
+        (option.checked) && ( arrayTareas[ indiceTarea ].estado = (option.id == "terminado") ? ( "Terminado" ) : ( (option.id == "enProceso") ? ( "En proceso" ) : ("Comenzar") ) )
     
     });
 
@@ -257,6 +312,141 @@ function guardarCambios( nombreIngresado, descripcionIngresada, indiceTarea  ){
         (option.checked) && (arrayTareas[ indiceTarea ].prioridad = (option.id == "alta") ? ( "Alto" ) : ( (option.id == "media") ? ( "Medio" ) : ("Bajo") ) )
         
     });
+}
+
+// funciones de libreria chart.js
+
+function mostrarGraficos(){
+
+    graficoLinea = new Chart( document.getElementById('graficoLinea'), configuracionLinea());
+    graficoDonut = new Chart( document.getElementById('graficoDoughnut'), configuracionDoughnut() );
+
+}
+
+function actualizarGraficos(){
+
+    graficoDonut.config.data.datasets[0].data = traerEstadoTareas(); 
+    graficoDonut.update();
+    graficoLinea.config.data.datasets[0].data = traerPrioridadTareas( "Alto" ); 
+    graficoLinea.config.data.datasets[1].data = traerPrioridadTareas( "Medio" );
+    graficoLinea.config.data.datasets[2].data = traerPrioridadTareas( "Bajo" );
+    graficoLinea.update();
+}
+
+function configuracionLinea(){
+    return config = {
+        type: 'line',
+        data: {
+            labels: traerNombresUsuarios(),
+            datasets: [{
+                label: 'Tareas con Prioridad Alta',
+                backgroundColor: 'rgba(253, 31, 74, 0.35)',
+                borderColor: 'rgb(253, 31, 74)',
+                data: traerPrioridadTareas( "Alto" ),
+                tension: 0.5,
+                fill: true,
+                pointBorderWidth: 8,
+                borderJoinStyle: 'round'
+            },{
+                label: 'Tareas con Prioridad Media',
+                backgroundColor: 'rgba(228, 51, 151, 0.35)',
+                borderColor: 'rgb(251, 189, 13)',
+                data: traerPrioridadTareas( "Medio" ),
+                tension: 0.5,
+                fill: true,
+                pointBorderWidth: 8,
+                borderJoinStyle: 'round'
+            },{
+                label: 'Tareas con Prioridad Baja',
+                backgroundColor: 'rgba(0, 196, 204, 0.35)',
+                borderColor: 'rgb(0, 196, 204)',
+                data: traerPrioridadTareas( "Bajo" ),
+                tension: 0.5,
+                fill: true,
+                pointBorderWidth: 8,
+                borderJoinStyle: 'round'
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip:{ enabled: true },
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Prioridad de las tareas de los usuarios:',
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    }
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        }
+    };
+}
+
+function configuracionDoughnut(){
+    return config = {
+        type: 'doughnut',
+        data: {
+            labels: labels = ['Terminado','En Proceso','Empezar'],
+            datasets : [{
+                label: 'Estado Tareas',
+                data: traerEstadoTareas(),
+                borderColor: [
+                    'rgb(4, 186, 113)',
+                    'rgb(251, 189, 13)',
+                    'rgb(228, 51, 151)'
+                ],
+                backgroundColor: [
+                'rgba(4, 186, 113, 0.4)',
+                'rgba(251, 189, 13, 0.4)',
+                'rgba(228, 51, 151, 0.4)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            plugins: {
+                tooltip:{ enabled: true },
+                legend: { position: 'bottom' }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        }
+    };
+}
+
+function traerNombresUsuarios(){
+    let listaUsuarios= [];
+    arrayUsuarios.forEach( usuario => {
+        listaUsuarios.push(usuario.nombre); 
+    });
+    return listaUsuarios
+}
+
+function traerEstadoTareas(){
+    let estadosTareas = [0,0,0];
+    arrayUsuarios[ obtenerUsuarioIngresado() ].tareas.forEach( tarea =>{
+        let posicionTarea = obtenerIndiceTarea( tarea );
+        let { estado } = arrayTareas[ posicionTarea ];
+        ( estado == "Terminado" ) ? ( estadosTareas[0]++ ) : ( ( estado == "En proceso" ) ? ( estadosTareas[1]++ ) : ( estadosTareas[2]++ ) );
+    });
+    return estadosTareas;
+}
+
+function traerPrioridadTareas( prioridadGrafico ){
+    let prioridadTareas = [];
+    arrayUsuarios.forEach( usuario => {
+        let cantidadPrioridad = 0;
+        usuario.tareas.forEach( tareaAsignada => {
+            let prioridad = arrayTareas[ obtenerIndiceTarea(tareaAsignada) ].prioridad;
+            ( prioridadGrafico == prioridad ) && ( cantidadPrioridad++ );
+        })
+        prioridadTareas.push(cantidadPrioridad); 
+    });
+    return prioridadTareas
 }
 
 //funciones para gestionar inicio de sesion
@@ -293,6 +483,7 @@ function generarIndiceRegistrado(){
 // Inicio de aplicacion
 
 function iniciarAplicacion(){
+    mostrarGraficos();
     cerrarSesion();
     crearTareas();
     mostrarTareas();
@@ -300,7 +491,7 @@ function iniciarAplicacion(){
 }
 
 window.onload = () => {
-    
+
     if( localStorage.getItem("recordar") == "true" ){
         // Se setea en localStorage el indice del usuario que ingresó
         generarIndiceRegistrado();

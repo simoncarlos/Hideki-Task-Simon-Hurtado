@@ -69,8 +69,13 @@
         }
     }
 }
-// popup Agregar participantes
 
-.tarea__popup--participantes{
-    
+.chart-container{
+    padding: 0px;
+    #graficoLinea{
+        padding: 20px;
+    }
+    #graficoDoughnut{
+        padding: 10px;
+    }
 }

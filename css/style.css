@@ -32,7 +32,18 @@ body {
 .dashboard {
   width: 100%;
   height: 100%;
-  margin: 0; }
+  margin: 0;
+  overflow-y: auto; }
+  .dashboard::-webkit-scrollbar {
+    width: 7px;
+    height: 8px; }
+  .dashboard::-webkit-scrollbar-track {
+    border-radius: 4px; }
+  .dashboard::-webkit-scrollbar-thumb {
+    background: #e43397;
+    border-radius: 4px; }
+  .dashboard::-webkit-scrollbar-thumb:hover {
+    background: #e43397; }
   .dashboard__calendario {
     width: 100%;
     border-radius: 50px;
@@ -45,43 +56,21 @@ body {
       height: 100%;
       width: 70%;
       background-color: white;
-      border-radius: 50px; }
+      border-radius: 30px; }
     .dashboard__calendario .dashboard__notificaciones {
       height: 100%;
       width: 26%;
       background-color: white;
-      border-radius: 50px; }
+      border-radius: 30px; }
   .dashboard__cuerpo {
     width: 100%;
     height: 100%;
-    border-radius: 20px;
-    overflow-y: auto; }
-    .dashboard__cuerpo::-webkit-scrollbar {
-      width: 7px;
-      height: 8px; }
-    .dashboard__cuerpo::-webkit-scrollbar-track {
-      border-radius: 4px; }
-    .dashboard__cuerpo::-webkit-scrollbar-thumb {
-      background: #e43397;
-      border-radius: 4px; }
-    .dashboard__cuerpo::-webkit-scrollbar-thumb:hover {
-      background: #e43397; }
+    border-radius: 20px; }
 
 .tareas {
   width: 100%;
   overflow-y: auto;
   background-color: #f6f8fc; }
-  .tareas::-webkit-scrollbar {
-    width: 7px;
-    height: 8px; }
-  .tareas::-webkit-scrollbar-track {
-    background: #f6f8fc;
-    border-radius: 4px; }
-  .tareas::-webkit-scrollbar-thumb {
-    background: #00C4CC;
-    border-radius: 4px; }
-  .tareas::-webkit-scrollbar-thumb:hover {
-    background: #00C4CC; }
 
 .tareas__operaciones {
   width: 100%;
@@ -125,9 +114,16 @@ body {
     height: 40px; }
     .tareas__buscar input:focus {
       outline: 0 none;
-      border: 1px solid #00C4CC; }
+      border: 1px solid #00c4cc; }
     .tareas__buscar input::placeholder {
-      color: #00C4CC; }
+      color: #00c4cc; }
+
+.chart-container {
+  padding: 0px; }
+  .chart-container #graficoLinea {
+    padding: 20px; }
+  .chart-container #graficoDoughnut {
+    padding: 10px; }
 
 .tarea__lista {
   width: 100%;
@@ -163,7 +159,7 @@ body {
   color: white; }
 
 .tarea__prioridad--bajo {
-  background-color: #00C4CC;
+  background-color: #00c4cc;
   color: white; }
 
 .tarea__item {
@@ -188,7 +184,7 @@ body {
     top: 0;
     height: 10rem;
     width: 7px;
-    background-color: #00C4CC;
+    background-color: #00c4cc;
     border-radius: 10px 0 0 10px; }
 
 .tarea__colaboradores--valor {
@@ -248,7 +244,7 @@ body {
   cursor: pointer; }
 
 .bx-edit:hover {
-  color: #00C4CC; }
+  color: #00c4cc; }
 
 .bx-trash-alt:hover {
   color: #fd1f4a; }
@@ -332,7 +328,7 @@ body {
   padding: 15px 15px;
   margin: 30px auto; }
 
-#placeholder, #placeholder2, #placeholder3, #placeholder4, #placeholder5 {
+#placeholder, #placeholder2, #placeholder3, #placeholder4, #placeholder5, #placeholder6 {
   position: absolute;
   top: 35px;
   left: 15%;
@@ -353,7 +349,11 @@ body {
   left: 5%; }
 
 #placeholder5 {
-  top: 700px;
+  top: 703px;
+  left: 5%; }
+
+#placeholder6 {
+  top: 800px;
   left: 5%; }
 
 .tarea__modificar--descripcion {
@@ -398,24 +398,25 @@ body {
   .tarea__modificar--estado #media:checked + label, .tarea__modificar--prioridad #media:checked + label {
     background-color: #fbbd0d; }
   .tarea__modificar--estado #baja:checked + label, .tarea__modificar--prioridad #baja:checked + label {
-    background-color: #00C4CC; }
+    background-color: #00c4cc; }
 
 .tarea__modificar--profiles {
   display: flex;
   flex-wrap: wrap;
   width: 90%;
   margin: 40px auto;
-  padding: 20px 0;
+  padding: 20px 5%;
   border: 1px solid #e43397;
   border-radius: 15px; }
   .tarea__modificar--profiles li {
-    margin: 20px 40px;
+    margin: 20px 0;
+    padding: 0;
     width: 100%;
     display: flex;
     align-items: center; }
     .tarea__modificar--profiles li .bx-user-minus {
       font-size: 1.6rem;
-      margin: 0 20px 0 10px;
+      margin-right: 10px;
       padding-top: 10px;
       color: #e43397;
       transition: color 1s ease;
@@ -431,7 +432,7 @@ body {
       flex-direction: column;
       justify-content: center;
       width: 100%;
-      padding: 10px 0 0 10px; }
+      padding: 10px 0 0 0; }
       .tarea__modificar--profiles li article .tarea__perfil--nombre {
         font-size: 14px;
         padding: 0;
@@ -500,18 +501,42 @@ body {
 .modal__modificar {
   width: 100%;
   height: auto;
-  margin: 40px 0;
+  margin: 30px 0;
   display: flex;
   align-items: center;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  flex-wrap: wrap; }
 
 .modal__guardar, .modal__cancelar {
   text-decoration: none;
   font-size: 14px;
   color: #e43397;
+  margin: 10px 0;
   padding: 10px 20px;
   border-radius: 40px;
   border: 1px solid #e43397; }
+
+.tarea__calendario {
+  width: 90%;
+  margin: 40px auto;
+  padding: 20px 5% 10px;
+  border: 1px solid #e43397;
+  border-radius: 15px; }
+  .tarea__calendario input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    color: #272638;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px; }
+    .tarea__calendario input ::-webkit-calendar-picker-indicator {
+      background-color: transparent;
+      padding: 5px;
+      cursor: pointer;
+      border-radius: 3px; }
 
 @media screen and (min-width: 600px) {
   body {

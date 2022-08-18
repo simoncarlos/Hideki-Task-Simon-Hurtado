@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" href="../assets/logos/hideki-logo.png">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -42,11 +43,11 @@
     <main class="contenido">
         <section class="dashboard">
             <header class="dashboard__calendario">
-                <div class="dashboard__estadisticas">
-
+                <div class="dashboard__estadisticas chart-container">
+                    <canvas id="graficoLinea"></canvas>
                 </div>
-                <div class="dashboard__notificaciones">
-
+                <div class="dashboard__notificaciones chart-container">
+                    <canvas id="graficoDoughnut"></canvas>
                 </div>
             </header>
             <main class="dashboard__cuerpo">
@@ -82,7 +83,7 @@
                     </div>
                     <div class="tarea__interlineado" ></div>
                     <div class="tarea__lista">
-                        
+                    
                     </div>
                     <div class="tarea__popup modal fade modal-dialog-scrollable" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -91,53 +92,12 @@
                 </section>
             </main>
         </section>
-    <!-- 
-        <section class="calendario">
-            <h2>calendario</h1>
-        </section>
-        <section class="tareas"> 
-            <div class="tareas__categorias">
-                    <div class="tarea__nombre--encabezado">
-                        Nombre
-                    </div>
-                    <div class="tarea__estado--encabezado">
-                        Estado
-                    </div>
-                    <div class="tarea__colaboradores--encabezado">
-                        Equipo
-                    </div>
-                    <div class="tarea__fecha--encabezado">
-                        Fin
-                    </div>
-                    <div class="tarea__prioridad--encabezado">
-                        Prioridad
-                    </div>
-                    <div class="tarea__opciones--encabezado">
-                        Opciones
-                    </div>
-            </div>
-            <div class="tarea__interlineado" ></div>
-            <div class="tarea__lista">
-                
-            </div>
-            <div id="exampleModal" class="tarea__popup modal fade modal-dialog-scrollable" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                </div>
-            </div>
-        </section>
-        <section class="usuarios">
-            <div>
-    
-            </div>
-        </section>
-        <section class="notificaciones">
-            <div class="tarea__crear">
-                <i class='bx bx-layer-plus'></i> <p>Crear Tarea</p>
-            </div>
-        </section>
-    -->
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="../js/task.js"></script>
 </body>
 </html>

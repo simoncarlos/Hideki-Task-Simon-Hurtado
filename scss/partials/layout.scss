@@ -19,33 +19,7 @@ body{
     width: 100%;
     height: 100%;
     margin: 0;
-    &__calendario{
-        
-        width: 100%;
-        border-radius: 50px;
-        height: 40%;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .dashboard__estadisticas{
-            height: 100%;
-            width: 70%;
-            background-color: map-get($color, blanco);
-            border-radius: 50px;
-        }
-        .dashboard__notificaciones{
-            height: 100%;
-            width: 26%;
-            background-color: map-get($color, blanco);
-            border-radius: 50px;
-        }
-    }
-    &__cuerpo{
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        overflow-y: auto;
+    overflow-y: auto;
         &::-webkit-scrollbar {
             width: 7px; 
             height: 8px;
@@ -60,88 +34,35 @@ body{
         &::-webkit-scrollbar-thumb:hover {
             background: map-get($color, segundo);
         }
+    &__calendario{
+        width: 100%;
+        border-radius: 50px;
+        height: 40%;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .dashboard__estadisticas{
+            height: 100%;
+            width: 70%;
+            background-color: map-get($color, blanco);
+            border-radius: 30px;
+        }
+        .dashboard__notificaciones{
+            height: 100%;
+            width: 26%;
+            background-color: map-get($color, blanco);
+            border-radius: 30px;
+        }
+    }
+    &__cuerpo{
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
     }
 }
 .tareas{
     width: 100%;
     overflow-y: auto;
     background-color: map-get($color, light);
-    &::-webkit-scrollbar {
-        width: 7px; 
-        height: 8px;  
-    }
-    &::-webkit-scrollbar-track {
-        background: map-get($color, light); 
-        border-radius: 4px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background: map-get($color, primero);
-        border-radius: 4px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        background: map-get($color, primero);
-    }
 }
-//.usuarios{
-//    grid-area: usuarios;
-//    color: map-get($color, dark);
-//    width: 100%;
-//    overflow-y: auto;
-//    &::-webkit-scrollbar {
-//        width: 7px; 
-//        height: 8px;  
-//    }
-//    &::-webkit-scrollbar-track {
-//        background: map-get($color, light); 
-//        border-radius: 4px;
-//    }
-//    &::-webkit-scrollbar-thumb {
-//        background: map-get($color, primero);
-//        border-radius: 4px;
-//    }
-//    &::-webkit-scrollbar-thumb:hover {
-//        background: map-get($color, primero);
-//    }
-//    div{
-//        width: 100%;
-//        height: auto;
-//        margin: 0;
-//        padding: 5%;
-//        .usuarios--perfil{
-//            display: flex;
-//            margin: 10px 0;
-//            padding: 10px;
-//            width: 100%;
-//            align-items: center;
-//            background-color: map-get($color, blanco);
-//            border-radius: 10px;
-//            box-shadow:  6px 6px 14px #e7e9ed,
-//                        -6px -6px 14px #ffffff;
-//            img{
-//                width: 3rem;
-//                height: 3rem;
-//            }
-//            article{
-//                display: flex;
-//                flex-direction: column;
-//                justify-content: center;
-//                width: 100%;
-//                padding: 10px 0 0 10px;
-//                .usuario__perfil--nombre{
-//                    font-size: map-get($size, normal);
-//                    padding: 0;
-//                    margin: 0;
-//                }
-//                .usuario__perfil--rol{
-//                    font-size: map-get($size, sm);
-//                    padding: 0;
-//                    margin: 0;
-//                }
-//            }
-//        }  
-//    }
-//}
-//.notificaciones{
-//    grid-area: notificaciones;
-//    width: 100%;
-//}
