@@ -26,24 +26,24 @@ body {
   grid-area: contenido;
   height: 100vh;
   width: 100%;
-  padding: 2%;
-  background-color: #f6f8fc; }
+  padding: 0;
+  background-color: #f6f8fc;
+  overflow-y: auto; }
+  .contenido::-webkit-scrollbar {
+    width: 7px;
+    height: 8px; }
+  .contenido::-webkit-scrollbar-track {
+    border-radius: 4px; }
+  .contenido::-webkit-scrollbar-thumb {
+    background: #e43397;
+    border-radius: 4px; }
+  .contenido::-webkit-scrollbar-thumb:hover {
+    background: #e43397; }
 
 .dashboard {
   width: 100%;
   height: 100%;
-  margin: 0;
-  overflow-y: auto; }
-  .dashboard::-webkit-scrollbar {
-    width: 7px;
-    height: 8px; }
-  .dashboard::-webkit-scrollbar-track {
-    border-radius: 4px; }
-  .dashboard::-webkit-scrollbar-thumb {
-    background: #e43397;
-    border-radius: 4px; }
-  .dashboard::-webkit-scrollbar-thumb:hover {
-    background: #e43397; }
+  margin: 0; }
   .dashboard__calendario {
     width: 100%;
     border-radius: 50px;
@@ -63,14 +63,40 @@ body {
       background-color: white;
       border-radius: 30px; }
   .dashboard__cuerpo {
-    width: 100%;
-    height: 100%;
+    width: autp;
+    height: auto;
     border-radius: 20px; }
 
 .tareas {
   width: 100%;
+  margin: 10px 0;
+  padding: 20px;
   overflow-y: auto;
   background-color: #f6f8fc; }
+
+.encabezado {
+  width: 100vw; }
+  .encabezado__fondo--blanco {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100%; }
+  .encabezado__fondo--secondary {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: 100%;
+    background-color: #e43397;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .encabezado__fondo--secondary img {
+      width: 75%;
+      height: auto; }
 
 .tareas__operaciones {
   width: 100%;
@@ -124,6 +150,18 @@ body {
     padding: 20px; }
   .chart-container #graficoDoughnut {
     padding: 10px; }
+
+.navbar {
+  height: auto;
+  padding: 25px 50px; }
+  .navbar-brand img {
+    height: 70px; }
+
+.nav-item button {
+  padding: 10px 20px;
+  background-color: white;
+  color: #e43397;
+  border-radius: 0px; }
 
 .tarea__lista {
   width: 100%;

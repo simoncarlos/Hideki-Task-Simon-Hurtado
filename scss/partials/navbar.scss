@@ -1,0 +1,15 @@
+.navbar{
+    height: auto;
+    padding: 25px 50px;
+    &-brand{
+        img{
+            height: 70px;
+        }
+    }
+}
+.nav-item button{
+    padding: 10px 20px;
+    background-color: map-get($color, blanco);
+    color: map-get( $color, segundo );
+    border-radius: 0px;
+}

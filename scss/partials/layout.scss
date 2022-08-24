@@ -12,13 +12,8 @@ body{
     grid-area: contenido;
     height: 100vh;
     width: 100%;
-    padding: 2%;
+    padding: 0;
     background-color: map-get($color, light);
-}
-.dashboard{
-    width: 100%;
-    height: 100%;
-    margin: 0;
     overflow-y: auto;
         &::-webkit-scrollbar {
             width: 7px; 
@@ -34,6 +29,11 @@ body{
         &::-webkit-scrollbar-thumb:hover {
             background: map-get($color, segundo);
         }
+}
+.dashboard{
+    width: 100%;
+    height: 100%;
+    margin: 0;
     &__calendario{
         width: 100%;
         border-radius: 50px;
@@ -56,13 +56,45 @@ body{
         }
     }
     &__cuerpo{
-        width: 100%;
-        height: 100%;
+        width: autp;
+        height: auto;
         border-radius: 20px;
     }
 }
 .tareas{
     width: 100%;
+    margin: 10px 0;
+    padding: 20px;
     overflow-y: auto;
     background-color: map-get($color, light);
+}
+
+// Layout pagina de presentacion
+
+.encabezado{
+    width: 100vw;
+    &__fondo--blanco{
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 50vw;
+        height: 100%;
+    }
+    &__fondo--secondary{
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        width: 50vw;
+        height: 100%;
+        background-color: map-get($color, segundo );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 75%;
+            height: auto;
+        }
+    }
 }

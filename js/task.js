@@ -1,5 +1,4 @@
-const arrayTareas = [];
-const arrayUsuarios = [];
+
 
 class Tarea{
     constructor(id, nombre, estado, inicio, fin, prioridad, descripcion, usuarios){
@@ -25,34 +24,18 @@ class Usuario{
     }
 }
 
-arrayTareas.unshift(new Tarea( 1 , "Responsive Design", "Terminado" ,  "1/11/2022",    "2022-08-04" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ,   [1 , 2 , 3 , 6]     ));
-arrayTareas.unshift(new Tarea( 2 , "Web Development",   "En proceso" , "4/11/2022"  ,   "2022-08-04" ,  "Alto" ,  "Aprobar entrega de interactuar con HTML de javascript" ,  [2 , 3 , 4 ]        ));
-arrayTareas.unshift(new Tarea( 3 , "Databases",         "Comenzar" ,   "10/11/2022"  ,   "2022-08-04" ,   "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" , [3 , 5 ]            ));
-arrayTareas.unshift(new Tarea( 4 , "Final Proyect",     "En proceso" , "6/11/2022" ,    "2022-08-04" ,  "Medio" , "Aprobar entrega de interactuar con HTML de javascript" ,  [4 , 5 , 6 ]        ));
-arrayTareas.unshift(new Tarea( 5 , "Wireframes",        "Terminado" ,  "26/11/2022"  ,   "2022-08-04" ,   "Medio" , "Aprobar entrega de interactuar con HTML de javascript" , [5 , 1 , 2, 3 ]     ));
-arrayTareas.unshift(new Tarea( 6 , "Entrevistas",       "En proceso" , "20/11/2022"  ,   "2022-08-04" ,   "Alto" ,  "Aprobar entrega de interactuar con HTML de javascript" , [6 , 3 , 2 , 5 ]    ));
-arrayTareas.unshift(new Tarea( 7 , "Benchmarking",      "Comenzar" ,   "24/11/2022" ,    "2022-08-04" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" , [1 , 2 , 3 , 5]     ));
-arrayTareas.unshift(new Tarea( 8 , "POV + MVP",         "En proceso" , "9/11/2022"  ,  "2022-08-04" ,  "Bajo" ,  "Aprobar entrega de interactuar con HTML de javascript" ,   [2 , 3 , 4 ]        ));
-
-arrayUsuarios.unshift(new Usuario( 1 , "Solange",   "contraseña" , "Tutora" ,     "1.png" ,  [ 1 , 7 , 5 ]            ));
-arrayUsuarios.unshift(new Usuario( 2 , "Florencia", "contraseña" , "Profesora",   "18.png" , [ 2 , 8 , 1, 5, 6, 7 ]   ));
-arrayUsuarios.unshift(new Usuario( 3 , "Marco",     "contraseña" , "Tutor" ,      "12.png" , [ 3 , 1, 2, 5, 6, 7, 8 ] ));
-arrayUsuarios.unshift(new Usuario( 4 , "Diana",     "contraseña" , "Tutora" ,     "19.png" , [ 4 , 2, 8 ]             ));
-arrayUsuarios.unshift(new Usuario( 5 , "Mariano",   "contraseña" , "Coordinador", "13.png" , [ 5 , 3, 4, 6, 7 ]       ));
-arrayUsuarios.unshift(new Usuario( 6 , "Diego",     "contraseña" , "Alumno" ,     "7.png" ,  [ 6 , 1, 4 ]             ));
-
 let graficoLinea;
 let graficoDonut;
 
 // funciones para mostrar tareas
 
-function mostrarTareas(){
+function mostrarTareas( arrayUsuarios, arrayTareas ){
 
     let listaTareas = document.querySelector(".tarea__lista");
     listaTareas.innerHTML = " ";
 
     arrayUsuarios[ obtenerUsuarioIngresado() ].tareas.forEach( idTarea =>{
-        let posicionTarea = obtenerIndiceTarea( idTarea );
+        let posicionTarea = obtenerIndiceTarea(arrayTareas, idTarea );
         let{ id, nombre, estado, fin, prioridad, usuarios } = arrayTareas[ posicionTarea ];
         
         let colorPrioridad = (prioridad == "Alto") ? "alto" : ( ( prioridad == "Medio" ) ? "medio" : "bajo" );
@@ -78,24 +61,24 @@ function mostrarTareas(){
                                         </div>`;
         // Agregado iconos de colaboradores dentro de la tarea
         usuarios.forEach( idColaborador => {
-            mostrarIconosColaboradores( idColaborador , posicionTarea );
+            mostrarIconosColaboradores( arrayUsuarios, arrayTareas, idColaborador , posicionTarea );
         });
     });
-    eliminarTareas();
-    modificarTareas();
-    actualizarGraficos();
+    eliminarTareas( arrayUsuarios, arrayTareas );
+    modificarTareas( arrayUsuarios, arrayTareas );
+    actualizarGraficos( arrayUsuarios, arrayTareas );
 }
 
-function obtenerIndiceTarea( idTarea ){
+function obtenerIndiceTarea( arrayTareas, idTarea ){
     return arrayTareas.findIndex( (tarea) => { return ( tarea.id == idTarea ) });
 }
 
-function obtenerIndiceUsuario( idUsuario ){
+function obtenerIndiceUsuario( arrayUsuarios, idUsuario ){
     return arrayUsuarios.findIndex( (usuario) => { return usuario.id == idUsuario })
 }
 
-function mostrarIconosColaboradores( idColaborador, indiceTarea ){
-    let posicionColaborador = obtenerIndiceUsuario( idColaborador );
+function mostrarIconosColaboradores( arrayUsuarios, arrayTareas, idColaborador, indiceTarea ){
+    let posicionColaborador = obtenerIndiceUsuario(arrayUsuarios, idColaborador );
     document.getElementById("colaboradores"+ arrayTareas[indiceTarea].id ).innerHTML += ` <div>
                                                                                 <img src="../assets/profiles/${ arrayUsuarios[ posicionColaborador ].fotoSrc }">
                                                                             </div>`;
@@ -103,19 +86,19 @@ function mostrarIconosColaboradores( idColaborador, indiceTarea ){
 
 // funciones para eliminar tareas del array tareas y de los usuarios en simultaneo
 
-function eliminarTareas(){
+function eliminarTareas( arrayUsuarios, arrayTareas ){
     // Se añade el evento de click a cada boton de borrar para eliminar del arrayTareas el elemento cuya posicion coincida con el id de la etiqueta que contiene la clase .bx-trash-alt
     document.querySelectorAll(".bx-trash-alt").forEach( botonEliminar => {
 
         botonEliminar.addEventListener("click", (nodoBotonEliminar) =>{
-            confirmarEliminarTarea(nodoBotonEliminar);
+            confirmarEliminarTarea( arrayUsuarios, arrayTareas, nodoBotonEliminar);
         });
 
     });
 
 }
 
-function confirmarEliminarTarea( nodoBotonEliminar ){
+function confirmarEliminarTarea( arrayUsuarios, arrayTareas, nodoBotonEliminar ){
     Swal.fire({
         title: '¿Está seguro que desea eliminar?',
         text: "Una vez borrada la tarea no se puede revertir!",
@@ -129,22 +112,22 @@ function confirmarEliminarTarea( nodoBotonEliminar ){
     }).then((result) => {
         if (result.isConfirmed) {
             let idBotonEliminar = nodoBotonEliminar.target.id.replace(/[^0-9]+/g, "");
-            let borrarPosicion = obtenerIndiceTarea( idBotonEliminar );
+            let borrarPosicion = obtenerIndiceTarea(arrayTareas, idBotonEliminar );
             arrayTareas.splice( borrarPosicion , 1 );
-            eliminarTareaDeUsuarios(idBotonEliminar);
-            mostrarTareas();
+            eliminarTareaDeUsuarios(arrayUsuarios, idBotonEliminar);
+            actualizarDatos( arrayUsuarios, arrayTareas );
             Swal.fire({
                 title: '¡Tarea Eliminada!',
                 text: 'Su tarea ha sido eliminada con exito.',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 1800
+                timer: 1500
             })
         }
     });
 }
 
-function eliminarTareaDeUsuarios( idBotonEliminar ){
+function eliminarTareaDeUsuarios(arrayUsuarios, idBotonEliminar ){
 
     arrayUsuarios.forEach( usuario => {
         
@@ -153,7 +136,6 @@ function eliminarTareaDeUsuarios( idBotonEliminar ){
         } 
 
     });
-
 }
 
 function eliminarItem(tareas, idBotonEliminar){
@@ -163,21 +145,21 @@ function eliminarItem(tareas, idBotonEliminar){
 
 // funciones para crear tareas
 
-function crearTareas(){
+function crearTareas( arrayUsuarios, arrayTareas ){
     document.querySelector(".tarea__crear").addEventListener("click", () =>{
 
         let nuevoId = 1;
         (arrayTareas.length != 0) && ( nuevoId = arrayTareas[0].id + 1 );
         arrayTareas.unshift(new Tarea( nuevoId , "", "Terminado" , "23/11/2022" ,  "19 ene" ,  "Medio" , "", [ arrayUsuarios[obtenerUsuarioIngresado()].id ] ));
         arrayUsuarios[ obtenerUsuarioIngresado() ].tareas.unshift(nuevoId);
-        mostrarTareas(); 
+        actualizarDatos( arrayUsuarios, arrayTareas);
         document.getElementById("editar"+nuevoId).click()
     });
 }
 
 // funciones para modificar tareas
 
-function modificarTareas(){
+function modificarTareas( arrayUsuarios, arrayTareas ){
 
     let listaBotonesEditar = document.querySelectorAll('.bx-edit');
     let contenedorTarea = document.querySelector(".modal");
@@ -186,7 +168,7 @@ function modificarTareas(){
 
         botonEditar.addEventListener('click', nodobotonEditar =>{ 
             //se busca la posicion de la tarea que tenga un id coincidente con el id del .bx-edit para insertar las propiedades del objeto.
-            let indiceTarea = obtenerIndiceTarea( nodobotonEditar.target.id.replace(/[^0-9]+/g, "") );
+            let indiceTarea = obtenerIndiceTarea(arrayTareas, nodobotonEditar.target.id.replace(/[^0-9]+/g, "") );
             let { nombre, estado, fin, prioridad, descripcion, usuarios} = arrayTareas[indiceTarea];
             contenedorTarea.innerHTML = " ";
             contenedorTarea.innerHTML += `<div class="tarea__modificar">  
@@ -238,7 +220,7 @@ function modificarTareas(){
                                         </div>`;            
             // Se recorren los ID de los colaboradores que se encuentra dentro de la propiedad "colaboradores" del cada tarea para luego comparar con los id de la lista de usuarios y devolver su posicion dentro del array de usuarios
             usuarios.forEach( colaborador => {
-                let posicion = obtenerIndiceUsuario(colaborador);// arrayUsuarios.findIndex( usuario => usuario.id == colaborador );
+                let posicion = obtenerIndiceUsuario(arrayUsuarios, colaborador);// arrayUsuarios.findIndex( usuario => usuario.id == colaborador );
                 let { fotoSrc, nombre, rol } = arrayUsuarios[posicion];
                 document.querySelector(".tarea__modificar--profiles").innerHTML += `
                                                 <li class="delete${colaborador}">
@@ -258,20 +240,23 @@ function modificarTareas(){
             ( prioridad == "Alto" )   ? ( document.getElementById("alta").checked = true )      : ( ( prioridad == "Medio" )   ? ( document.getElementById("media").checked = true )     : ( document.getElementById("baja").checked = true ) );
             
             //Escucha de eventos
-            document.getElementById("salvarCambios").onclick = () => { verificarModificacion( indiceTarea ) };
-
+            //document.querySelector("#salvarCambios").onclick = verificarModificacion( arrayUsuarios, arrayTareas, indiceTarea );
+            let guardarCambiosBoton = document.getElementById("salvarCambios");
+            guardarCambiosBoton.addEventListener("click", () =>{
+                verificarModificacion( arrayUsuarios, arrayTareas, indiceTarea )
+            });
+            //document.getElementById("salvarCambios").addEventListener('click', verificarModificacion( arrayUsuarios, arrayTareas, indiceTarea ) );
         });
     });
 }
 
-function verificarModificacion( indiceTarea ){
-
+function verificarModificacion( arrayUsuarios, arrayTareas, indiceTarea ){
     let nombreIngresado = document.querySelector(".tarea__modificar--nombre"); 
     let descripcionIngresada = document.querySelector(".tarea__modificar--descripcion");
     let fechaIngresada = document.querySelector(".tarea__calendario input");
     if( ( nombreIngresado.value.length != 0 ) && ( descripcionIngresada.value.length != 0 ) && ( fechaIngresada.value.length != 0 ) ){
-        guardarCambios( nombreIngresado.value, descripcionIngresada.value, fechaIngresada.value, indiceTarea );
-        mostrarTareas();
+        guardarCambios(arrayTareas, nombreIngresado.value, descripcionIngresada.value, fechaIngresada.value, indiceTarea );
+        actualizarDatos( arrayUsuarios, arrayTareas );
         document.querySelector(".bx-x-circle").click();
         Swal.fire({
             title: '¡Cambios Guardados!',
@@ -298,7 +283,7 @@ function verificarModificacion( indiceTarea ){
 
 }
 
-function guardarCambios( nombreIngresado, descripcionIngresada,  fechaIngresada, indiceTarea  ){
+function guardarCambios(arrayTareas, nombreIngresado, descripcionIngresada,  fechaIngresada, indiceTarea  ){
 
     arrayTareas[ indiceTarea ].nombre = nombreIngresado;
     arrayTareas[ indiceTarea ].descripcion = descripcionIngresada;
@@ -316,33 +301,33 @@ function guardarCambios( nombreIngresado, descripcionIngresada,  fechaIngresada,
 
 // funciones de libreria chart.js
 
-function mostrarGraficos(){
+function mostrarGraficos( arrayUsuarios, arrayTareas ){
 
-    graficoLinea = new Chart( document.getElementById('graficoLinea'), configuracionLinea());
-    graficoDonut = new Chart( document.getElementById('graficoDoughnut'), configuracionDoughnut() );
+    graficoLinea = new Chart( document.getElementById('graficoLinea'), configuracionLinea( arrayUsuarios, arrayTareas ));
+    graficoDonut = new Chart( document.getElementById('graficoDoughnut'), configuracionDoughnut( arrayUsuarios, arrayTareas ) );
 
 }
 
-function actualizarGraficos(){
+function actualizarGraficos( arrayUsuarios, arrayTareas ){
 
-    graficoDonut.config.data.datasets[0].data = traerEstadoTareas(); 
+    graficoDonut.config.data.datasets[0].data = traerEstadoTareas( arrayUsuarios, arrayTareas ); 
     graficoDonut.update();
-    graficoLinea.config.data.datasets[0].data = traerPrioridadTareas( "Alto" ); 
-    graficoLinea.config.data.datasets[1].data = traerPrioridadTareas( "Medio" );
-    graficoLinea.config.data.datasets[2].data = traerPrioridadTareas( "Bajo" );
+    graficoLinea.config.data.datasets[0].data = traerPrioridadTareas( arrayUsuarios, arrayTareas, "Alto" ); 
+    graficoLinea.config.data.datasets[1].data = traerPrioridadTareas( arrayUsuarios, arrayTareas, "Medio" );
+    graficoLinea.config.data.datasets[2].data = traerPrioridadTareas( arrayUsuarios, arrayTareas, "Bajo" );
     graficoLinea.update();
 }
 
-function configuracionLinea(){
+function configuracionLinea( arrayUsuarios, arrayTareas ){
     return config = {
         type: 'line',
         data: {
-            labels: traerNombresUsuarios(),
+            labels: traerNombresUsuarios( arrayUsuarios ),
             datasets: [{
                 label: 'Tareas con Prioridad Alta',
                 backgroundColor: 'rgba(253, 31, 74, 0.35)',
                 borderColor: 'rgb(253, 31, 74)',
-                data: traerPrioridadTareas( "Alto" ),
+                data: traerPrioridadTareas( arrayUsuarios, arrayTareas, "Alto" ),
                 tension: 0.5,
                 fill: true,
                 pointBorderWidth: 8,
@@ -351,7 +336,7 @@ function configuracionLinea(){
                 label: 'Tareas con Prioridad Media',
                 backgroundColor: 'rgba(228, 51, 151, 0.35)',
                 borderColor: 'rgb(251, 189, 13)',
-                data: traerPrioridadTareas( "Medio" ),
+                data: traerPrioridadTareas( arrayUsuarios, arrayTareas, "Medio" ),
                 tension: 0.5,
                 fill: true,
                 pointBorderWidth: 8,
@@ -360,7 +345,7 @@ function configuracionLinea(){
                 label: 'Tareas con Prioridad Baja',
                 backgroundColor: 'rgba(0, 196, 204, 0.35)',
                 borderColor: 'rgb(0, 196, 204)',
-                data: traerPrioridadTareas( "Bajo" ),
+                data: traerPrioridadTareas( arrayUsuarios, arrayTareas, "Bajo" ),
                 tension: 0.5,
                 fill: true,
                 pointBorderWidth: 8,
@@ -386,14 +371,14 @@ function configuracionLinea(){
     };
 }
 
-function configuracionDoughnut(){
+function configuracionDoughnut( arrayUsuarios, arrayTareas ){
     return config = {
         type: 'doughnut',
         data: {
             labels: labels = ['Terminado','En Proceso','Empezar'],
             datasets : [{
                 label: 'Estado Tareas',
-                data: traerEstadoTareas(),
+                data: traerEstadoTareas( arrayUsuarios, arrayTareas ),
                 borderColor: [
                     'rgb(4, 186, 113)',
                     'rgb(251, 189, 13)',
@@ -418,7 +403,7 @@ function configuracionDoughnut(){
     };
 }
 
-function traerNombresUsuarios(){
+function traerNombresUsuarios( arrayUsuarios ){
     let listaUsuarios= [];
     arrayUsuarios.forEach( usuario => {
         listaUsuarios.push(usuario.nombre); 
@@ -426,22 +411,23 @@ function traerNombresUsuarios(){
     return listaUsuarios
 }
 
-function traerEstadoTareas(){
+function traerEstadoTareas( arrayUsuarios, arrayTareas ){
     let estadosTareas = [0,0,0];
+    console.log(obtenerUsuarioIngresado());
     arrayUsuarios[ obtenerUsuarioIngresado() ].tareas.forEach( tarea =>{
-        let posicionTarea = obtenerIndiceTarea( tarea );
+        let posicionTarea = obtenerIndiceTarea(arrayTareas, tarea );
         let { estado } = arrayTareas[ posicionTarea ];
         ( estado == "Terminado" ) ? ( estadosTareas[0]++ ) : ( ( estado == "En proceso" ) ? ( estadosTareas[1]++ ) : ( estadosTareas[2]++ ) );
     });
     return estadosTareas;
 }
 
-function traerPrioridadTareas( prioridadGrafico ){
+function traerPrioridadTareas( arrayUsuarios, arrayTareas, prioridadGrafico ){
     let prioridadTareas = [];
     arrayUsuarios.forEach( usuario => {
         let cantidadPrioridad = 0;
         usuario.tareas.forEach( tareaAsignada => {
-            let prioridad = arrayTareas[ obtenerIndiceTarea(tareaAsignada) ].prioridad;
+            let prioridad = arrayTareas[ obtenerIndiceTarea(arrayTareas, tareaAsignada) ].prioridad;
             ( prioridadGrafico == prioridad ) && ( cantidadPrioridad++ );
         })
         prioridadTareas.push(cantidadPrioridad); 
@@ -451,7 +437,7 @@ function traerPrioridadTareas( prioridadGrafico ){
 
 //funciones para gestionar inicio de sesion
 
-function mostrarUsuarioRegistrado(){
+function mostrarUsuarioRegistrado( arrayUsuarios, arrayTareas ){
     let perfil = document.querySelector(".menu__perfil img");
     let usuarioIngresado = obtenerUsuarioIngresado();
     perfil.src = "../assets/profiles/"+ arrayUsuarios[ usuarioIngresado ].fotoSrc;
@@ -472,7 +458,7 @@ function cerrarSesion(){
     });
 }
 
-function generarIndiceRegistrado(){
+function generarIndiceRegistrado( arrayUsuarios ){
     // Trae el indice del usuario ingresado y lo guarda en el Local Storage
     let indexUsuarioRegistrado = arrayUsuarios.findIndex( usuario => {
         return usuario.nombre == localStorage.getItem("usuario") 
@@ -482,28 +468,111 @@ function generarIndiceRegistrado(){
 
 // Inicio de aplicacion
 
-function iniciarAplicacion(){
-    mostrarGraficos();
+function iniciarAplicacion( arrayUsuarios, arrayTareas ){
+    mostrarGraficos( arrayUsuarios, arrayTareas );
     cerrarSesion();
-    crearTareas();
-    mostrarTareas();
-    mostrarUsuarioRegistrado();
+    crearTareas( arrayUsuarios, arrayTareas );
+    mostrarTareas( arrayUsuarios, arrayTareas );
+    mostrarUsuarioRegistrado( arrayUsuarios, arrayTareas );
 }
 
 window.onload = () => {
 
-    if( localStorage.getItem("recordar") == "true" ){
-        // Se setea en localStorage el indice del usuario que ingresó
-        generarIndiceRegistrado();
-        iniciarAplicacion();
-    }
-    else if( localStorage.getItem("recordar") == "false" ){
-        generarIndiceRegistrado();
-        iniciarAplicacion();
-    }
-    else{
-        window.location.assign("../index.html");
-    }
-    
+    //fetch ('https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/9c8901ce-6ddb-434c-826c-790b12f6fd4d').then( (respuesta) => respuesta.json()).then( (info)=> {
+    //    arrayUsuarios = info.splice() ;
+    //    console.log(info);
+    //});
+    ( localStorage.getItem("recordar") == "true" ) ? ( getDatos() ) : ( ( localStorage.getItem("recordar") == "false" ) ? ( getDatos() ) : ( window.location.assign("../index.html") ) );
 
+    //if( localStorage.getItem("recordar") == "true" ){
+    //    getDatos();
+    //}
+    //else if( localStorage.getItem("recordar") == "false" ){
+    //    getDatos();
+    //}
+    //else{
+    //    window.location.assign("../index.html");
+    //}
+
+    //setearDatos();
+    
 };
+
+async function getDatos(){
+    /// 7  hdusd dasudashdas dsdasdhas u ihu hui hui hui huih uh uyg ygy hbuy control z de backup
+    let arrayUsuarios = [], arrayTareas = [];
+    let respuestaUsuarios = await fetch('https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/9c8901ce-6ddb-434c-826c-790b12f6fd4d');
+    let dataUsuarios = await respuestaUsuarios.json();
+    arrayUsuarios = await insertarDatosUsuarios( dataUsuarios, arrayUsuarios );
+    //console.log(arrayUsuarios);
+    
+    let respuestaTareas = await fetch('https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/302c1d8e-b5d8-41c9-8e95-8106e0d44709');
+    let dataTareas = await respuestaTareas.json();
+    arrayTareas = await insertarDatosTareas( dataTareas, arrayTareas );
+    //console.log(arrayTareas);
+
+    generarIndiceRegistrado( arrayUsuarios );
+    iniciarAplicacion( arrayUsuarios, arrayTareas );
+}
+
+async function actualizarDatos( arrayUsuarios, arrayTareas ){
+
+    //let respuestaUsuarios = await fetch('https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/9c8901ce-6ddb-434c-826c-790b12f6fd4d');
+    //let dataUsuarios = await respuestaUsuarios.json();
+    //arrayUsuarios = await insertarDatosUsuarios( dataUsuarios, arrayUsuarios );
+    //console.log(arrayUsuarios);
+    
+    //let respuestaTareas = await fetch('https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/302c1d8e-b5d8-41c9-8e95-8106e0d44709');
+    //let dataTareas = await respuestaTareas.json();
+    //arrayTareas = await insertarDatosTareas( dataTareas, arrayTareas );
+    //console.log(arrayTareas);
+
+    putDatos( arrayUsuarios, arrayTareas );
+    mostrarTareas( arrayUsuarios, arrayTareas );
+
+}
+
+function putDatos( arrayUsuarios, arrayTareas ){
+    let urlUsuarios = 'https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/9c8901ce-6ddb-434c-826c-790b12f6fd4d?apiKey=d1fef2fa-b8d5-48b2-8dae-6dccd49f24ea' 
+    fetch(urlUsuarios, {
+        method: 'PUT',
+        body: JSON.stringify(arrayUsuarios),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+    
+    let urlTareas = 'https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/302c1d8e-b5d8-41c9-8e95-8106e0d44709?apiKey=68008529-ac34-4845-9db1-bb1d79362e40'
+    fetch(urlTareas, {
+        method: 'PUT',
+        body: JSON.stringify(arrayTareas),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+
+}
+
+async function insertarDatosUsuarios( dataUsuarios, arrayUsuarios ){
+
+    dataUsuarios.forEach( usuario =>{
+        arrayUsuarios.push(new Usuario( usuario.id , usuario.nombre , usuario.contraseña , usuario.rol , usuario.fotoSrc , [...usuario.tareas] ));
+    });
+    return arrayUsuarios
+}
+
+async function insertarDatosTareas( dataTareas, arrayTareas ){
+
+    dataTareas.forEach( tarea =>{
+        arrayTareas.push(new Tarea( tarea.id , tarea.nombre , tarea.estado , tarea.inicio , tarea.fin, tarea.prioridad, tarea.descripcion , [...tarea.usuarios] ));
+    });
+    return arrayTareas
+}
+
+function fetchDeDatos(){
+    fetch ('https://api.jsonstorage.net/v1/json/3569e258-b49a-40c1-9779-2856dadd6bff/9c8901ce-6ddb-434c-826c-790b12f6fd4d').then( (respuesta) => respuesta.json()).then( (info)=> {
+        arrayUsuarios = info;
+        console.log(info);
+        console.log(arrayUsuarios);
+    });
+}
