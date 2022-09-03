@@ -71,3 +71,85 @@
         padding: 10px;
     }
 }
+
+// Formulario de ingreso
+
+.modal-login{
+    .modal-body{
+        padding: 10% 5%;
+        .modal-encabezado{
+            padding: 10% 5% 0%;
+            h3{
+                color: map-get($color , segundo );
+                text-align: center;
+            }
+            button{
+                color: map-get($color , segundo );
+                position: absolute;
+                top: 10%;
+                right: 10%;
+            }
+        }
+        div{
+            margin: 40px auto;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:nth-child(-n+2){
+                input{
+                    width: 70%;
+                    height: 40px;
+                    padding: 5%;
+                    color: map-get($color, segundo);
+                    border: 1px solid map-get($color, segundo);
+                    border-radius: 15px;
+                    &:focus{
+                        color: map-get($color, segundo);
+                        outline: 1px solid map-get($color, segundo);
+                    }
+                }
+                label{
+                    padding: 4px 6px;
+                    position: absolute;
+                    margin-top: -45px;
+                    color: map-get($color, segundo);
+                    background-color: map-get($color , blanco);
+                }
+            }
+            &:nth-child(0n+3){
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                label{
+                    color: map-get($color, segundo);
+                }
+                input{
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 10px;
+                    color: map-get($color, segundo);
+                    border: 1px solid map-get($color, segundo);
+                    border-radius: 15px;
+                    background-color: transparent;
+                    &:focus{
+                        color: map-get($color, segundo);
+                        outline: 1px solid map-get($color, segundo);
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+        .modal-pie{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            button{
+                color: map-get($color , blanco );
+                background-color: map-get($color , segundo );
+                border-color: map-get($color , segundo );
+                border-radius: 0px;
+            }
+        }
+    }
+}

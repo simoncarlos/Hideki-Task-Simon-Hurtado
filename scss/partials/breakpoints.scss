@@ -1,5 +1,8 @@
 @media screen and (min-width: 600px){
-    body{
+    .contenido .navbar{
+        display: none;
+    }
+    .cuerpo{
         grid-template-columns: 70px 1fr;
         grid-template-rows: 100%;
         grid-template-areas: "menues  contenido";
@@ -120,6 +123,17 @@
     .dashboard{
         height: 100%;
         width: 100%;
+        &__calendario{
+            overflow-x: hidden;
+            .dashboard__estadisticas{
+                height: 100%;
+                width: 58%;
+            }
+            .dashboard__notificaciones{
+                height: 100%;
+                width: 37%;
+            }
+        }
     }
     .tareas__operaciones{
         padding: 10px 0;
@@ -148,8 +162,47 @@
     .tarea__modificar{
         width: 540px;
     }
+
+    //Layout Pagina Principal
+
+    .encabezado{
+        &__fondo{
+            width: 30%;
+        }
+        img{
+            opacity: 1;
+        }
+        article{
+            text-align: left;
+            width: 100%;
+            padding: 4%;
+            h1{
+                font-size: 5rem;
+                margin-top: 20px;
+            }
+            p{
+                margin: 40px 0;
+                padding-right: 30%;
+            }
+            a{
+                font-size: 1.3rem;
+                padding: 15px 30px;
+            }
+        }
+    }
+
 }
 @media screen and (min-width: 992px){
+    .dashboard{
+        &__calendario{
+            .dashboard__estadisticas{
+                width: 68%;
+            }
+            .dashboard__notificaciones{
+                width: 27%;
+            }
+        }
+    }
     .tareas__categorias{
         display: flex;
     }
@@ -223,6 +276,18 @@
         justify-self: center;
         > * {
             margin: auto;
+        }
+    }
+
+    //Layout pagina principal
+
+    .navbar{
+        height: auto;
+        padding: 25px 50px;
+        &-brand{
+            img{
+                height: 70px;
+            }
         }
     }
 }

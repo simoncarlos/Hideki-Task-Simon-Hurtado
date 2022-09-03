@@ -1,4 +1,4 @@
-body{
+.cuerpo{
     height: 100vh;
     display: grid;
     grid-template-columns: 100vw;
@@ -27,7 +27,7 @@ body{
             border-radius: 4px;
         }
         &::-webkit-scrollbar-thumb:hover {
-            background: map-get($color, segundo);
+            background: transparent;
         }
 }
 .dashboard{
@@ -42,15 +42,31 @@ body{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        overflow-x: auto;
+        &::-webkit-scrollbar {
+            width: 7px; 
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: map-get($color, segundo);
+        }
         .dashboard__estadisticas{
             height: 100%;
-            width: 70%;
+            width: 100%;
             background-color: map-get($color, blanco);
             border-radius: 30px;
+            margin-right: 5%;
         }
         .dashboard__notificaciones{
             height: 100%;
-            width: 26%;
+            width: 50%;
             background-color: map-get($color, blanco);
             border-radius: 30px;
         }
@@ -72,29 +88,62 @@ body{
 // Layout pagina de presentacion
 
 .encabezado{
-    width: 100vw;
-    &__fondo--blanco{
-        position: absolute;
+    height: 100vh;
+    background-color:  map-get($color, light);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    z-index: 1;
+    &__fondo{
         content: "";
-        top: 0;
-        left: 0;
-        width: 50vw;
+        width: 20%;
+        background-color:  map-get($color, primero);
+        position: absolute;
         height: 100%;
-    }
-    &__fondo--secondary{
-        position: absolute;
-        content: "";
-        top: 0;
         right: 0;
-        width: 50vw;
-        height: 100%;
-        background-color: map-get($color, segundo );
+        z-index: 2;
         display: flex;
         align-items: center;
         justify-content: center;
         img{
-            width: 75%;
-            height: auto;
+            position: relative;
+            width: 180%;
+            opacity: 0.8;
+            left: -50%;
+        }
+    }
+    article{
+        text-align: left;
+        width: 100%;
+        padding: 6%;
+        z-index: 4;
+        color:  map-get($color, segundo);
+        font-family: $primaryFont;
+        font-weight: map-get($weight, 300);
+        h1{
+            font-weight: map-get($weight, 700);
+            font-size: 3rem;
+            letter-spacing: -3px;
+            line-height: 90%;
+            color: map-get($color, segundo); 
+            margin-top: 20px;
+        }
+        small{
+            font-weight: map-get($weight, 300);
+        }
+        p{
+            margin: 40px 0;
+            font-weight: map-get($weight, 400);
+            font-size: map-get($size, normal);
+            padding-right: 30%;
+        }
+        button{
+            font-weight: map-get($weight, 700);
+            color: map-get($color, light);
+            background-color: map-get($color, tercero);
+            font-size: 1.3rem;
+            text-decoration: none;
+            padding: 15px 30px;
         }
     }
 }

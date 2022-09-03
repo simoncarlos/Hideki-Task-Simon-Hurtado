@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="cuerpo">
     <nav class="menu">
         <div class="menu__encabezado">
             <div class="menu__decoration">
@@ -31,7 +31,7 @@
             <a href=""><i class='bx bx-line-chart'></i></a>
             <a href=""><i class='bx bx-stopwatch'></i></a>
             <a href=""><i class='bx bx-moon'></i></a>
-            <a id="cerrarSesion"><i class='bx bx-link-external'></i></a>
+            <a class="cerrarSesion"><i class='bx bx-link-external'></i></a>
         </div>
         <div class="menu__perfil">
             <div>
@@ -41,6 +41,12 @@
         </div>
     </nav>
     <main class="contenido">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"> <img src="../assets/logos/hideki-logo.png" alt=""></a>
+                <a><i class='bx bx-link-external cerrarSesion'></i></a>
+            </div>
+        </nav>
         <section class="dashboard">
             <header class="dashboard__calendario">
                 <div class="dashboard__estadisticas chart-container">
@@ -53,10 +59,6 @@
             <main class="dashboard__cuerpo">
                 <section class="tareas"> <!-- lista -->
                     <div class="tareas__operaciones">
-                        <!--<div class="tareas__buscar">
-                            <input type="text" placeholder="Buscar por nombre">
-                            <i class='bx bx-search-alt'></i>
-                        </div>-->
                         <div class="tarea__crear">
                             <i class='bx bx-layer-plus'></i> <p>Crear Tarea</p>
                         </div>
