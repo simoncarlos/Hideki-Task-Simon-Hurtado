@@ -115,6 +115,9 @@
                     color: map-get($color, segundo);
                 }
             }
+            .active{
+                color: map-get($color, segundo);
+            }
         }
     }
     .contenido{
@@ -172,7 +175,7 @@
         img{
             opacity: 1;
         }
-        article{
+        &__content{
             text-align: left;
             width: 100%;
             padding: 4%;
@@ -193,6 +196,22 @@
 
 }
 @media screen and (min-width: 992px){
+    .navbar__icon{
+        display: none;
+    }
+    .navbar .offcanvas-end{
+        .offcanvas-body{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            button{
+                margin-left: 80%;
+            }           
+            div{
+                display: none;
+            }
+        }
+    }
     .dashboard{
         &__calendario{
             .dashboard__estadisticas{
