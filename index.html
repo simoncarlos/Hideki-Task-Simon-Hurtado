@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar__index navbar-expand-lg fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"> <img src="assets/logos/hideki-logo-principal.png" alt=""></a>
             <div class='navbar__icon' data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <button id="ingresar" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Iniciar Sesión
+                        Ingresar
                     </button>
                     <div>
                         <ul>
@@ -50,23 +50,14 @@
         <article class="encabezado__content">
             <small>Administracion multiusuario</small>
             <h1>Bienvenido al administrador de tareas Hideki Task</h1>
-            <p>Un administrador de tareas multiusuario, podes registrarte ahora mismo <br>¡Es gratis!</p>
-            <button id="ingresarInvitado" href="">Ingresar como invitado</button>
-        </article>
-        <article class="encabezado__contacto">
-            <ul>
-                <li>
-                    <a href="https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado" target="_blank"><i class='bx bxl-github' ></i></a>
-                    <a href="https://www.linkedin.com/in/simon-carlos/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
-                    <a href="mailto:csimonhurtado@gmail.com?subject=Contacto&body=%C2%A1Hola!%20%C2%BFComo%20estas%3F%0D%0AVi%20tu%20aplicacion%20web%20de%20Hideki%20Task%20y%20me%20gustaria%20contactarme%20con%20vos" target="_blank"><i class='bx bxl-gmail' ></i></a>
-                </li>
-            </ul>
+            <p>Un administrador de tareas multiusuario, podes ingresar ahora mismo<br>¡Es gratis!</p>
+            <button id="ingresarInvitado">Ingresar como invitado</button>
         </article>
     </header>
     <main>
         <section class="modal-login">
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body">
                             <div class="modal-encabezado">
@@ -88,7 +79,7 @@
                                 </div>
                             </form>
                             <div class="modal-pie">
-                                <button id="iniciarSesion" button type="button" class="btn btn-primary">Iniciar Sesión</button>
+                                <button id="iniciarSesion" type="button" class="btn btn-primary">Iniciar Sesión</button>
                             </div>
                         </div>
                     </div>

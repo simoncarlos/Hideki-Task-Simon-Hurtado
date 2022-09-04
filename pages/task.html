@@ -26,11 +26,11 @@
             </div>
         </div>
         <div class="menu__opciones">
-            <a href=""><i class='bx bx-layout active'></i></a>
-            <a href="https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado" target="_blank"><i class='bx bxl-github' ></i></a>
-            <a href="https://www.linkedin.com/in/simon-carlos/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
-            <a href="mailto:csimonhurtado@gmail.com?subject=Contacto&body=%C2%A1Hola!%20%C2%BFComo%20estas%3F%0D%0AVi%20tu%20aplicacion%20web%20de%20Hideki%20Task%20y%20me%20gustaria%20contactarme%20con%20vos" target="_blank"><i class='bx bxl-gmail' ></i></a>
-            <a class="cerrarSesion"><i class='bx bx-link-external'></i></a>
+            <a href=""><img src="../assets/iconos/dashboard.png" class="active" alt=""></a>
+            <a href="https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado" target="_blank"><img src="../assets/iconos/github.png" alt=""></a>
+            <a href="https://www.linkedin.com/in/simon-carlos/" target="_blank"><img src="../assets/iconos/linkedin.png" alt=""></a>
+            <a href="mailto:csimonhurtado@gmail.com?subject=Contacto&body=%C2%A1Hola!%20%C2%BFComo%20estas%3F%0D%0AVi%20tu%20aplicacion%20web%20de%20Hideki%20Task%20y%20me%20gustaria%20contactarme%20con%20vos" target="_blank"><img src="../assets/iconos/email.png" alt=""></a>
+            <a class="cerrarSesion"><img src="../assets/iconos/log-out.png" alt=""></a>
         </div>
         <div class="menu__perfil">
             <div>
@@ -40,10 +40,56 @@
         </div>
     </nav>
     <main class="contenido">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"> <img src="../assets/logos/hideki-logo.png" alt=""></a>
-                <a><i class='bx bx-link-external cerrarSesion'></i></a>
+                <div class='navbar__icon' data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="#" class="navbar-brand">
+                    <img src="../assets/logos/hideki-logo.png" alt="Logo de Hideki Task">
+                </a>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="offcanvas__encabezado">
+                            <div class="menu__decoration">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <img src="../assets/logos/hideki-logo.png" alt="Logo de Hideki Task">
+                        </div>
+                        <div class="offcanvas__body">
+                            <ul>
+                                <li>
+                                    <a href=""><img src="../assets/iconos/dashboard.png" class="active" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado" target="_blank"><img src="../assets/iconos/github.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/simon-carlos/" target="_blank"><img src="../assets/iconos/linkedin.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a href="mailto:csimonhurtado@gmail.com?subject=Contacto&body=%C2%A1Hola!%20%C2%BFComo%20estas%3F%0D%0AVi%20tu%20aplicacion%20web%20de%20Hideki%20Task%20y%20me%20gustaria%20contactarme%20con%20vos" target="_blank"><img src="../assets/iconos/email.png" alt=""></a>
+                                </li>
+                                <li>
+                                    <a class="cerrarSesion"><img src="../assets/iconos/log-out.png" alt=""></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="offcanvas__footer menu__perfil">
+                            <div>
+                                <img alt="">
+                            </div>
+                            <p class="menu__usuario--nombre"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
         <section class="dashboard">

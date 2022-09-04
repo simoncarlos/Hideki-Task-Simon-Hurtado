@@ -502,12 +502,12 @@ function traerPrioridadTareas( arrayUsuarios, arrayTareas, prioridadGrafico ){
 //funciones para gestionar inicio de sesion
 
 function mostrarUsuarioRegistrado( arrayUsuarios, arrayTareas ){
-    let perfil = document.querySelector(".menu__perfil img");
+    let perfiles = document.querySelectorAll(".menu__perfil");
     let usuarioIngresado = obtenerUsuarioIngresado();
-    perfil.src = "../assets/profiles/"+ arrayUsuarios[ usuarioIngresado ].fotoSrc;
-
-    let nombrePerfil = document.querySelector(".menu__usuario--nombre");
-    nombrePerfil.innerHTML = `${arrayUsuarios[usuarioIngresado].nombre}`;
+    perfiles.forEach( perfil => {
+        perfil.firstElementChild.firstElementChild.src = "../assets/profiles/"+ arrayUsuarios[ usuarioIngresado ].fotoSrc;
+        perfil.lastElementChild.innerHTML = `${arrayUsuarios[usuarioIngresado].nombre}`;
+    });
 }
 
 function obtenerUsuarioIngresado(){

@@ -15,6 +15,7 @@
         flex-direction: column;
         align-items: flex-end;
         justify-content: space-between;
+        cursor: pointer;
         span{
             height: 4px;
             background-color: map-get($color, segundo);
@@ -75,6 +76,148 @@
             font-family: $primaryFont;
             font-weight: map-get($weight , 400);
             line-height: 20px;
+        }
+    }
+}
+.contenido .navbar{
+    .container-fluid{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__icon{
+        width: 30px;
+        height: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        cursor: pointer;
+        span{
+            height: 4px;
+            background-color: map-get($color, segundo);
+            border-radius: 5px;
+            &:nth-child(0n+1){
+                width: 100%;
+            }
+            &:nth-child(0n+2){
+                width: 75%;
+            }
+            &:nth-child(0n+3){
+                width: 50%;
+            }
+        }
+    }
+    .navbar-brand{
+        padding: 0;
+        margin: 0;
+        img{
+            width: 90px;
+            height: 90px;
+        }
+    }
+    .offcanvas{
+        &-start{
+            width: 75px;
+        }
+        &-header{
+            margin: 20px 0;
+        }
+        &-body{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            padding: 50px 15%;
+            .offcanvas{
+                &__encabezado{
+                    .menu__decoration{
+                        display: flex;
+                        align-items: center;
+                        span{
+                            width: 7px;
+                            height: 7px;;
+                            border-radius: 50px;
+                            margin-left: 4px;
+                            &:nth-child(0n+1){
+                                background-color: #ff5f56;
+                            }
+                            &:nth-child(0n+2){
+                                background-color: #ffbd2e;
+                            }
+                            &:nth-child(0n+3){
+                                background-color: #27c93f;
+                            }
+                        }
+                    }
+                    img{
+                        width: 100%;
+                        margin: 0 auto;
+                        padding: 0;
+                    }
+                }
+                &__body{
+                    ul{
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        width: auto;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-around;
+                        li{
+                            width: 50%;
+                            margin: 10px 0;
+                            a{
+                                width: 100%;
+                                text-decoration: none;
+                                img{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+                &__footer{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    div{
+                        width: 2.7rem;
+                        height: 2.7rem;
+                        background-color: rgba(146, 146, 146, 0.082);
+                        border-radius: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            width: 2.7rem;
+                            height: 2.7rem;
+                            border-radius: 50px;
+                        }
+                    }
+                    .menu__usuario--nombre{
+                        font-size: map-get($size, sm);
+                        color: map-get($color, dark);
+                        margin-top: 10px;
+                    }
+                    article{
+                        height: 3 rem;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        margin-left: 10px;
+                        p{
+                            height: auto;
+                            padding: 0;
+                            margin: 0;
+                            line-height: normal;
+                        }
+                    }
+                }
+            }
         }
     }
 }

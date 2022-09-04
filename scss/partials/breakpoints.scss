@@ -105,18 +105,20 @@
             flex-direction: column;
             font-size: map-get($size, normal);
             color: map-get($color, dark);
-            i{
-                font-size: 25px;
-                color: map-get($color, dark);
-                cursor: pointer;
+            a{
+                width: 40%;
+            }
+            img{
+                width: 100%;
                 margin-bottom: 30px;
-                transition: all 1s ease;
+                cursor: pointer;
+                transition: filter 1s ease;
                 &:hover{
-                    color: map-get($color, segundo);
+                    filter: invert(53%) sepia(97%) saturate(6314%) hue-rotate(308deg) brightness(96%) contrast(86%);
                 }
             }
             .active{
-                color: map-get($color, segundo);
+                filter: invert(53%) sepia(97%) saturate(6314%) hue-rotate(308deg) brightness(96%) contrast(86%);
             }
         }
     }
@@ -196,7 +198,24 @@
 
 }
 @media screen and (min-width: 992px){
-    .navbar__icon{
+    .contenido{
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 7px; 
+            height: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: map-get($color, segundo);
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: transparent;
+        }
+    }
+    .navbar__index .navbar__icon{
         display: none;
     }
     .navbar .offcanvas-end{
@@ -300,7 +319,7 @@
 
     //Layout pagina principal
 
-    .navbar{
+    .navbar__index .navbar{
         height: auto;
         padding: 25px 50px;
         &-brand{

@@ -76,14 +76,13 @@ function verificarUsuario(user, password, recordar, arrayUsuarios){
 
 function iniciarSesion(){
 
-    let user = document.getElementById("user").value;
-    let password = document.getElementById("password").value;
-    let recordar = document.getElementById("recordarUsuario");
-
     let iniciarSesion = document.getElementById("iniciarSesion"); // Boton de inicio de sesion
 
     iniciarSesion.addEventListener("click", () => {
         
+        let user = document.getElementById("user").value;
+        let password = document.getElementById("password").value;
+        let recordar = document.getElementById("recordarUsuario");
         getUsuarios(user, password, recordar);
 
     });
@@ -98,7 +97,7 @@ function ingresoInvitado(){
 function añadirEventoSesion(){
     
     let ingresarInvitado = document.getElementById("ingresarInvitado");
-    let ingresar = document.getElementById("iniciarSesion");
+    let ingresar = document.getElementById("ingresar");
 
     ingresarInvitado.addEventListener("click",  () =>{
         ingresoInvitado(); 
