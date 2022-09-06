@@ -2,17 +2,17 @@
 
 ![N|Solid](assets/logos/hideki-logo-principal.png)
 
-Proyecto final para curso de javascript realizado en CoderHouse. Con uso de Javascript, SASS, CSS3, Bootstrap, HTML5.
+Proyecto final para el curso de javascript realizado en CoderHouse. Con uso de Javascript, chart.js, SASS, CSS3, Bootstrap y HTML5.
 
 ## Descripción
 
-Task Manager multiusuario desarrollado con javascript, con hosting de Firebase y responsive web design.
+Hideki Task Manager es un administrador de tareas multiusuario desarrollado con javascript, con hosting de Firebase y responsive web design.
 
-El mismo cuenta con una pagina principal con login de usuario que da acceso a la aplicacion web. Dentro de esta se pueden visualizar tareas, agregar tareas, eliminarlas, y modificar sus valores e inclusive los colaboradores correspondientes. Siendo que cada modificacion de estas se ve reflejado directamente en la base de datos y actualizando a los usuarios.
+El mismo cuenta con una pagina principal con login de usuario que da acceso a la aplicacion web. Dentro de esta se pueden visualizar tareas, agregar tareas, eliminarlas, y modificar sus valores e inclusive agregar/eliminar usuarios colaboradores. Siendo que cada modificacion se ve reflejada directamente en el JSON storage, haciendo que cada vez que se ingrese a la plataforma se traigan mediante la API los datos actualizados.
 
 ## Visuales
 
-Para este desarrollo se tuvo en cuenta las diferentes resoluciones que puede prensentar: mobile, tablet y desktop
+Para este desarrollo se tuvo en cuenta las diferentes resoluciones que puede prensentar: mobile, tablet y desktop.
 
 ![N|Solid](https://i.ibb.co/kQDPpF9/Dise-o-sin-t-tulo-preview-rev-1.png)
 
@@ -53,16 +53,22 @@ npm run watch-css
 
 Resumen de los commits realizados en el repositorio:
 
-`Prototipo final con Fetch, Async y Await `
->Committed on 14 Jul 2022
+`Optimización de proyecto y documentación`
+>Committed on 5 Sep 2022
 
-`Prototipo funcional con simulacion de base de datos con API JSONStorage`
+`Prototipo final de estilos `
+>Committed on 4 Sep 2022
+
+`Prototipo final con Fetch, Async y Await `
+>Committed on 24 Ago 2022
+
+`Prototipo funcional con simulación de base de datos con API JSONStorage`
 >Committed on 23 Ago 2022
 
 `Agregado de librerias`
 >Committed on 17 Ago 2022
 
-`Reestructuracion del proyecto y uso de operadores avanzados`
+`Reestructuración del proyecto y uso de operadores avanzados`
 >Committed on 15 Ago 2022
 
 `Prototipo funcional login`
@@ -71,7 +77,7 @@ Resumen de los commits realizados en el repositorio:
 `Prototipo funcional ABM - DOM y eventos`
 >Committed on 5 Ago 2022
 
-`Diseño, manipulacion de DOM y enventos`
+`Diseño, manipulación de DOM y enventos`
 >Committed on 4 Ago 2022
 
 `Subida de archivos y primera pre entrega del proyecto final`
@@ -82,10 +88,10 @@ Resumen de los commits realizados en el repositorio:
 Autor: Carlos Diego Simon Hurtado
 
 Agradecimientos: 
-A mi tutora Solange Mac Intyre por responder siempre mis dudas con mucha paciencia y claridad a lo largo del curso y a mi profesora Florencia Hendel por todo el conocimiento aportado a lo largo de estas clases, lo cual hizo posible el desarrollo de este proyecto.
+A mi tutora Solange Mac Intyre por acompañarme en este proceso de aprendizaje respondiendo siempre mis consultas y orientandome con el proyecto. También a mi profesora Florencia Hendel por todo el conocimiento aportado a lo largo del curso, lo cual hizo posible este desarrollo. Por ultimo agradecer a la fundacion empujar por la oportunidad de esta capacitación y a mi coordinador Mariano.
 
 ## Estado del proyecto
 
-En Proceso
+Finalizado
 
-Entrega de incorporar Fetch
+Entrega del Proyecto Final
