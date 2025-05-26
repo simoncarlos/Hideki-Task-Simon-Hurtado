@@ -3,16 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build-css": "node-sass --include-path scss scss/style.scss css/style.css",
+    "build-css": "sass scss/style.scss css/style.css",
     "watch-css": "nodemon -e scss -x \"npm     run build-css\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Carlos Diego Simon Hurtado",
   "license": "ISC",
-  "devDependencies": {
-    "node-sass": "^7.0.1",
-    "nodemon": "^2.0.19"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado.git"
@@ -21,5 +17,9 @@
     "url": "https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado/issues"
   },
   "homepage": "https://github.com/diegosimonnn/Hideki-Task-Simon-Hurtado#readme",
-  "description": ""
+  "description": "![N|Solid](assets/logos/hideki-logo-principal.png)",
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "sass": "^1.89.0"
+  }
 }

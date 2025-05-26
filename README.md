@@ -4,6 +4,8 @@
 
 Proyecto final para el curso de javascript realizado en CoderHouse. Con uso de Javascript, chart.js, SASS, CSS3, Bootstrap y HTML5.
 
+En Actual proceso de actualizacion y migracion.
+
 ## Descripción
 
 Hideki Task Manager es un administrador de tareas multiusuario desarrollado con javascript, con hosting de Firebase y responsive web design.
@@ -31,7 +33,7 @@ npm init
 > Instalar el nodemon
 
 ```sh
-npm install -D node-sass nodemon.
+npm install sass nodemon.
 ```
 
 Crear carpeta `SCSS` y `CSS` y sus archivos respectivos.
@@ -39,8 +41,8 @@ Crear carpeta `SCSS` y `CSS` y sus archivos respectivos.
 > Editar el package.json e insertar las lineas:
 
 ```sh
-"build-css": "node-sass --include-path scss scss/style.scss css/style.css",
-"watch-css": "nodemon -e scss -x \"npm     run build-css\"",
+"build-css": "sass scss/style.scss css/style.css",
+"watch-css": "nodemon -e scss -x \"npm run build-css\"",
 ```
 
 > Compilar con npm
@@ -82,6 +84,9 @@ Resumen de los commits realizados en el repositorio:
 
 `Subida de archivos y primera pre entrega del proyecto final`
 >Committed on 1 Ago 2022
+
+`Cambio de node-sass a Dart Sass y update nodemon`
+>Committed on 26 May 2025
 
 ## Autores y agradecimientos
 
